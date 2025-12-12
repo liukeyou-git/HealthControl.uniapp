@@ -1,0 +1,40 @@
+{
+  "pages": [
+    {
+      "path": "pages/Front/Index"
+    },
+    {
+      "path": "pages/Front/Login"
+    },
+
+    {
+      "path": "pages/Front/Register"
+    },
+    {
+      "path": "pages/Front/ForgetPassword"
+    },
+    {
+      "path": "pages/Front/UserCenter"
+    },
+    {
+      "path": "pages/Front/PasswordEdit"
+    },
+    {
+      "path": "pages/Front/UserInfoEdit"
+    },
+    {
+      "path": "pages/Front/WeChatBind"
+    },
+    {
+      "path": "pages/Front/HealthIndicatorList"
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "navigationStyle": "custom"
+  },
+  "uniIdRouter": {}
+}
