@@ -6,6 +6,7 @@ import { GetLoginToken, RemoveLoginToken, SetLoginToken } from "@/utils/cache";
 
 import UserIcon from "@/assets/个人中心.png";
 import HomeIcon from "@/assets/首页.png";
+import HealthIndicatorListIcon from "@/assets/健康指标.png";
 //  状态管理
 export const useCommonStore = defineStore("common", {
   state: () => ({
@@ -19,6 +20,11 @@ export const useCommonStore = defineStore("common", {
         url: "/pages/Front/Index",
         label: "首 页",
         icon: HomeIcon,
+      },
+      {
+        url: "/pages/Front/HealthIndicatorList",
+        label: "健康指标",
+        icon: HealthIndicatorListIcon,
       },
       {
         url: "/pages/Front/UserCenter",

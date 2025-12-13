@@ -1,0 +1,96 @@
+<template>
+    <view>
+        <uni-nav-bar dark :fixed="true" shadow background-color="var(--primary-color)" status-bar left-icon="left"
+            left-text="返回" @clickLeft="goBack" title="健康指标分类" />
+
+
+    </view>
+</template>
+
+<script setup>
+
+import { useCommonStore } from '@/store';
+import { Post } from '@/utils/http';
+import { onLoad, onReady, onShow } from "@dcloudio/uni-app";
+import { computed, reactive, ref } from 'vue';
+
+// 获取store
+const commonStore = useCommonStore();
+const Token = computed(() => commonStore.Token)
+const UserInfo = computed(() => commonStore.UserInfo)
+const RoleType = computed(() => commonStore.RoleType)
+const UserId = computed(() => commonStore.UserId)
+
+
+
+const TestInfoList = ref([]);
+
+const where = reactive({
+
+});
+
+// 生命周期钩子
+onLoad(async (option) => {
+});
+onShow(async () => {
+    GetCommHealthIndicatorTypeListApi()
+    GetHealthIndicatorTypeListApi();
+});
+
+onReady(async () => {
+
+
+});
+
+
+// 方法
+const goBack = () => {
+    uni.navigateBack();
+};
+
+const CommHealthIndicatorTypeList = ref([]);
+//得到官方公开的指标分类
+const GetCommHealthIndicatorTypeListApi = async () => {
+    let {
+        Data: {
+            Items
+        }
+    } = await Post('/HealthIndicatorType/List', {
+        IsComm: true
+    });
+    CommHealthIndicatorTypeList.value = Items;
+}
+
+
+const HealthIndicatorTypeList = ref([]);
+const GetHealthIndicatorTypeListApi = async () => {
+    let {
+        Data: {
+            Items
+        }
+    } = await Post('/HealthIndicatorType/List', where);
+    HealthIndicatorTypeList.value = Items;
+}
+// 删除
+const ShowDeleteModal = async (Id) => {
+    uni.showModal({
+        title: '提示',
+        content: '确认删除该测试信息吗？',
+        success: async (res) => {
+            if (res.confirm) {
+                const { Success } = await Post(`/HealthIndicatorType/Delete`, { Id: Id });
+                if (Success) {
+                    await GetHealthIndicatorTypeListApi();
+                    uni.showToast({
+                        title: '删除成功',
+                        icon: 'success'
+                    });
+                }
+            }
+        }
+    })
+};
+
+</script>
+
+<style scoped lang="scss"></style>

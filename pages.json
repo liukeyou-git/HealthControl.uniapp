@@ -27,6 +27,15 @@
     },
     {
       "path": "pages/Front/HealthIndicatorList"
+    },
+    {
+      "path": "pages/Front/CommHealthIndicatorTypeList"
+    },
+    {
+      "path":"pages/Front/HealthIndicatorTypeList"
+    },
+    {
+      "path":"pages/Front/HealthIndicatorForm"
     }
   ],
   "globalStyle": {
