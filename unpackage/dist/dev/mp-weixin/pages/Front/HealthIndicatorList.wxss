@@ -1,0 +1,562 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 页面内容区域 */
+.page-content.data-v-920f6292 {
+  padding: 10rpx 24rpx 120rpx;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* 顶部入口区域 */
+.entry-section.data-v-920f6292 {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+  height: 280rpx;
+  /* 固定高度 */
+}
+
+/* 左侧卡片组 */
+.left-cards.data-v-920f6292 {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  flex: 1;
+}
+
+/* 右侧大卡片 */
+.right-card.data-v-920f6292 {
+  flex: 1;
+  height: 100%;
+}
+
+/* 入口卡片通用样式 */
+.entry-card.data-v-920f6292 {
+  display: flex;
+  align-items: center;
+  border-radius: 16rpx;
+  padding: 24rpx 20rpx;
+  background-color: #ffffff;
+  border: 2rpx solid #e0e0e0;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  /* 点击效果 */
+  /* hover效果（触摸设备上的轻微变化） */
+  /* 主色调卡片 - 官方选择指标 */
+  /* 副色调卡片 - 自主添加指标 */
+  /* 第三色调卡片 - 我的填写记录 */
+  /* 小卡片样式 */
+  /* 大卡片样式 */
+}
+.entry-card.data-v-920f6292:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.12);
+}
+.entry-card.data-v-920f6292:hover {
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.12);
+}
+.entry-card.primary.data-v-920f6292:hover {
+  border-color: #2E7D32;
+  box-shadow: 0 8rpx 32rpx rgba(76, 175, 80, 0.2);
+}
+.entry-card.primary .entry-title.data-v-920f6292 {
+  color: #2E7D32;
+}
+.entry-card.primary .entry-arrow uni-icons.data-v-920f6292 {
+  color: #4CAF50 !important;
+}
+.entry-card.secondary.data-v-920f6292:hover {
+  border-color: #388E3C;
+  box-shadow: 0 8rpx 32rpx rgba(102, 187, 106, 0.2);
+}
+.entry-card.secondary .entry-title.data-v-920f6292 {
+  color: #388E3C;
+}
+.entry-card.secondary .entry-arrow uni-icons.data-v-920f6292 {
+  color: #66BB6A !important;
+}
+.entry-card.tertiary.data-v-920f6292:hover {
+  border-color: #00695C;
+  box-shadow: 0 8rpx 32rpx rgba(38, 166, 154, 0.2);
+}
+.entry-card.tertiary .entry-icon-large.data-v-920f6292 {
+  background: linear-gradient(135deg, #26A69A, #00695C);
+}
+.entry-card.tertiary .entry-title-large.data-v-920f6292 {
+  color: #00695C;
+}
+.entry-card.tertiary .entry-arrow uni-icons.data-v-920f6292 {
+  color: #26A69A !important;
+}
+.entry-card.small.data-v-920f6292 {
+  padding: 20rpx 16rpx;
+  height: 132rpx;
+  /* 固定高度，保证两个小卡片总高度等于大卡片 */
+}
+.entry-card.small .entry-icon.data-v-920f6292 {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 12rpx;
+}
+.entry-card.small .entry-content .entry-title.data-v-920f6292 {
+  font-size: 26rpx;
+  font-weight: 600;
+  margin-bottom: 4rpx;
+}
+.entry-card.small .entry-content .entry-subtitle.data-v-920f6292 {
+  font-size: 20rpx;
+  opacity: 0.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.entry-card.small .entry-arrow.data-v-920f6292 {
+  margin-left: 8rpx;
+}
+.entry-card.large.data-v-920f6292 {
+  padding: 24rpx 20rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.entry-card.large .entry-icon-large.data-v-920f6292 {
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 16rpx;
+}
+.entry-card.large .entry-content-large.data-v-920f6292 {
+  flex: 1;
+}
+.entry-card.large .entry-content-large .entry-title-large.data-v-920f6292 {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+.entry-card.large .entry-content-large .entry-subtitle-large.data-v-920f6292 {
+  font-size: 24rpx;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+.entry-card.large .entry-arrow.data-v-920f6292 {
+  margin-left: 12rpx;
+}
+
+/* 入口图标容器 */
+.entry-icon.data-v-920f6292 {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+.entry-icon .icon-image.data-v-920f6292 {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+/* 大卡片图标容器 */
+.entry-icon-large.data-v-920f6292 {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+.entry-icon-large .icon-image-large.data-v-920f6292 {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 入口内容区域 */
+.entry-content.data-v-920f6292 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 大卡片内容区域 */
+.entry-content-large.data-v-920f6292 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 入口主标题 */
+.entry-title.data-v-920f6292 {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 4rpx;
+  line-height: 1.4;
+}
+
+/* 大卡片主标题 */
+.entry-title-large.data-v-920f6292 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 4rpx;
+  line-height: 1.4;
+}
+
+/* 入口副标题 */
+.entry-subtitle.data-v-920f6292 {
+  font-size: 22rpx;
+  color: #666666;
+  line-height: 1.5;
+}
+
+/* 大卡片副标题 */
+.entry-subtitle-large.data-v-920f6292 {
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 1.5;
+}
+
+/* 入口箭头 */
+.entry-arrow.data-v-920f6292 {
+  margin-left: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 卡片图标容器 */
+.card-icon.data-v-920f6292 {
+  width: 80rpx;
+  height: 80rpx;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  box-shadow: 0 4rpx 8rpx rgba(76, 175, 80, 0.3);
+}
+
+/* 卡片内容区域 */
+.card-content.data-v-920f6292 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 卡片主标题 */
+.card-title.data-v-920f6292 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 8rpx;
+  line-height: 1.4;
+}
+
+/* 卡片副标题 */
+.card-subtitle.data-v-920f6292 {
+  font-size: 26rpx;
+  color: #888888;
+  line-height: 1.5;
+}
+
+/* 卡片箭头 */
+.card-arrow.data-v-920f6292 {
+  margin-left: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 健康指标区域样式 */
+.indicator-section.data-v-920f6292 {
+  margin-top: 16rpx;
+}
+
+/* 标题和操作区域 */
+.section-header.data-v-920f6292 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding: 0 8rpx;
+}
+.section-title.data-v-920f6292 {
+  display: flex;
+  align-items: center;
+}
+.title-text.data-v-920f6292 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-left: 12rpx;
+}
+.section-actions.data-v-920f6292 {
+  display: flex;
+  gap: 16rpx;
+}
+
+/* 选择状态提示 */
+.selection-status.data-v-920f6292 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 20rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  margin: 0 24rpx 16rpx 24rpx;
+}
+.status-info.data-v-920f6292 {
+  display: flex;
+  align-items: center;
+}
+.status-text.data-v-920f6292 {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-left: 8rpx;
+}
+.batch-record-btn.data-v-920f6292 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #4CAF50;
+  box-shadow: 0 2rpx 8rpx rgba(76, 175, 80, 0.3);
+  transition: background-color 0.3s ease;
+}
+.batch-record-btn.data-v-920f6292:active {
+  background-color: #45a049;
+}
+
+/* 操作按钮样式 */
+.action-btn.data-v-920f6292 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #4CAF50;
+  box-shadow: 0 2rpx 8rpx rgba(76, 175, 80, 0.3);
+  transition: background-color 0.3s ease;
+}
+.action-btn.data-v-920f6292:active {
+  background-color: #45a049;
+}
+.action-btn.select-btn.data-v-920f6292 {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+.action-btn.clear-btn.data-v-920f6292 {
+  background: linear-gradient(135deg, #FF9800, #F57C00);
+}
+.action-btn.cancel-btn.data-v-920f6292 {
+  background: linear-gradient(135deg, #F44336, #D32F2F);
+}
+.btn-text.data-v-920f6292 {
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+/* 分类包装器 */
+.category-wrapper.data-v-920f6292 {
+  margin-bottom: 32rpx;
+}
+
+/* 分类标题区域 */
+.category-header.data-v-920f6292 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 20rpx;
+  background: #ffffff;
+  border-radius: 16rpx 16rpx 0 0;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+.category-title.data-v-920f6292 {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333333;
+}
+.category-count.data-v-920f6292 {
+  font-size: 24rpx;
+  color: #888888;
+  background: #f5f5f5;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+/* 指标卡片 */
+.indicator-card.data-v-920f6292 {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 20rpx;
+  border-bottom: 2rpx solid #f8f8f8;
+  transition: background-color 0.3s ease;
+  /* 选择模式下的样式 */
+  /* 已选择状态 */
+}
+.indicator-card.data-v-920f6292:last-child {
+  border-bottom: none;
+}
+.indicator-card.data-v-920f6292:active {
+  background-color: #f8f8f8;
+}
+.indicator-card.selection-mode.data-v-920f6292 {
+  background-color: #f0f8f0;
+  /* 浅绿色背景 */
+  border-bottom: 2rpx solid #e0f0e0;
+  /* 浅灰色边框 */
+}
+.indicator-card.selected.data-v-920f6292 {
+  background-color: #e8f5e9;
+  /* 更深的浅绿色背景 */
+  border-bottom: 2rpx solid #a5d6a7;
+  /* 更深的浅绿色边框 */
+}
+
+/* 选择状态指示器 */
+.selection-indicator.data-v-920f6292 {
+  position: absolute;
+  top: 24rpx;
+  left: 20rpx;
+  z-index: 1;
+}
+.checkbox.data-v-920f6292 {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid #4CAF50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+.checkbox.checked.data-v-920f6292 {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+/* 指标图标容器 */
+.indicator-icon.data-v-920f6292 {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f8f0;
+  border-radius: 16rpx;
+  margin-right: 20rpx;
+}
+.icon-image.data-v-920f6292 {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 12rpx;
+}
+
+/* 指标信息区域 */
+.indicator-info.data-v-920f6292 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.indicator-name.data-v-920f6292 {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 8rpx;
+  line-height: 1.4;
+}
+.indicator-threshold.data-v-920f6292 {
+  font-size: 24rpx;
+  color: #4CAF50;
+  margin-bottom: 6rpx;
+  font-weight: 500;
+}
+.indicator-content.data-v-920f6292 {
+  font-size: 22rpx;
+  color: #666666;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 指标箭头 */
+.indicator-arrow.data-v-920f6292 {
+  margin-left: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 空状态样式 */
+.empty-state.data-v-920f6292 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 40rpx;
+  text-align: center;
+}
+.empty-icon.data-v-920f6292 {
+  margin-bottom: 24rpx;
+  opacity: 0.6;
+}
+.empty-text.data-v-920f6292 {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #666666;
+  margin-bottom: 12rpx;
+}
+.empty-subtitle.data-v-920f6292 {
+  font-size: 26rpx;
+  color: #999999;
+  line-height: 1.5;
+}
+
+/* 指标网格布局 */
+.indicators-grid.data-v-920f6292 {
+  background: #ffffff;
+  border-radius: 0 0 16rpx 16rpx;
+  overflow: hidden;
+}

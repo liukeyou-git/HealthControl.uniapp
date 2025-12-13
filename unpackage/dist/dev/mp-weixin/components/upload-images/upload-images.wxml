@@ -1,0 +1,1 @@
+<view class="data-v-c0e2b150"><uni-file-picker wx:if="{{g}}" class="data-v-c0e2b150" bindselect="{{a}}" bindprogress="{{b}}" bindsuccess="{{c}}" bindfail="{{d}}" binddelete="{{e}}" u-i="c0e2b150-0" bind:__l="__l" bindupdateModelValue="{{f}}" u-p="{{g}}"></uni-file-picker></view>

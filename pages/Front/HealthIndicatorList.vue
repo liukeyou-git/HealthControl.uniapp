@@ -1,44 +1,66 @@
 <template>
     <view>
         <!-- 导航栏 -->
-        <uni-nav-bar dark :fixed="true" shadow background-color="var(--primary-color)" status-bar left-icon="left"
-            title="健康指标" />
+        <uni-nav-bar dark :fixed="true" shadow background-color="var(--primary-color)" status-bar l title="健康指标" />
 
         <!-- 页面内容 -->
         <view class="page-content">
             <!-- 顶部入口区域 -->
             <view class="entry-section">
-                <!-- 官方选择指标入口 -->
-                <view class="entry-card primary" @click="goToOfficialIndicators">
-                    <!-- 卡片图标 -->
-                    <view class="entry-icon">
-                        <uni-icons type="checkmarkempty" size="28" color="#ffffff"></uni-icons>
+                <!-- 左侧卡片组 -->
+                <view class="left-cards">
+                    <!-- 官方选择指标入口 -->
+                    <view class="entry-card small primary" @click="goToOfficialIndicators">
+                        <!-- 卡片图标 -->
+                        <view class="entry-icon">
+                            <image :src="selectIcon" class="icon-image" mode="aspectFit"></image>
+                        </view>
+                        <!-- 卡片内容 -->
+                        <view class="entry-content">
+                            <view class="entry-title">官方选择指标</view>
+                            <view class="entry-subtitle">从官方推荐的健康指标中选择</view>
+                        </view>
+                        <!-- 箭头图标 -->
+                        <view class="entry-arrow">
+                            <uni-icons type="arrowright" size="14" color="#ffffff"></uni-icons>
+                        </view>
                     </view>
-                    <!-- 卡片内容 -->
-                    <view class="entry-content">
-                        <view class="entry-title">官方选择指标</view>
-                        <view class="entry-subtitle">从官方推荐的健康指标中选择</view>
-                    </view>
-                    <!-- 箭头图标 -->
-                    <view class="entry-arrow">
-                        <uni-icons type="arrowright" size="16" color="#ffffff"></uni-icons>
+
+                    <!-- 自主添加指标入口 -->
+                    <view class="entry-card small secondary" @click="goToCustomIndicators">
+                        <!-- 卡片图标 -->
+                        <view class="entry-icon">
+                            <image :src="addIcon" class="icon-image" mode="aspectFit"></image>
+                        </view>
+                        <!-- 卡片内容 -->
+                        <view class="entry-content">
+                            <view class="entry-title">自主添加指标</view>
+                            <view class="entry-subtitle">创建个性化的健康指标</view>
+                        </view>
+                        <!-- 箭头图标 -->
+                        <view class="entry-arrow">
+                            <uni-icons type="arrowright" size="14" color="#ffffff"></uni-icons>
+                        </view>
                     </view>
                 </view>
 
-                <!-- 自主添加指标入口 -->
-                <view class="entry-card secondary" @click="goToCustomIndicators">
-                    <!-- 卡片图标 -->
-                    <view class="entry-icon">
-                        <uni-icons type="plusempty" size="28" color="#ffffff"></uni-icons>
-                    </view>
-                    <!-- 卡片内容 -->
-                    <view class="entry-content">
-                        <view class="entry-title">自主添加指标</view>
-                        <view class="entry-subtitle">创建个性化的健康指标</view>
-                    </view>
-                    <!-- 箭头图标 -->
-                    <view class="entry-arrow">
-                        <uni-icons type="arrowright" size="16" color="#ffffff"></uni-icons>
+                <!-- 右侧大卡片 -->
+                <view class="right-card">
+                    <!-- 我的填写记录入口 -->
+                    <view class="entry-card large tertiary" @click="goToRecordList">
+                        <!-- 卡片图标 -->
+                        <view class="entry-icon-large">
+                            <image :src="recordIcon" class="icon-image-large" mode="aspectFit"></image>
+                        </view>
+                        <!-- 卡片内容 -->
+                        <view class="entry-content-large">
+                            <view class="entry-title-large">我的填写</view>
+                            <view class="entry-subtitle-large">查看历史健康数据记录</view>
+                        </view>
+                        <!-- 箭头图标 -->
+                        <view class="entry-arrow">
+                            <uni-icons type="arrowright" size="16" color="#ffffff"></uni-icons>
+                        </view>
                     </view>
                 </view>
             </view>
@@ -144,6 +166,9 @@ import { useCommonStore } from '@/store';
 import { Post } from '@/utils/http';
 import { onLoad, onReady, onShow } from "@dcloudio/uni-app";
 import { computed, reactive, ref } from 'vue';
+import addIcon from "@/assets/添加.png";
+import selectIcon from "@/assets/选择.png";
+import recordIcon from "@/assets/记录.png";
 
 // 获取store
 const commonStore = useCommonStore();
@@ -223,6 +248,13 @@ const goToCustomIndicators = () => {
     });
 };
 
+// 跳转到我的填写记录页面
+const goToRecordList = () => {
+    uni.navigateTo({
+        url: '/pages/Front/HealthIndicatorRecordList'
+    });
+};
+
 // 跳转到指标详情页面
 const goToIndicatorDetail = (indicator) => {
     if (isSelectionMode.value) {
@@ -285,9 +317,10 @@ const goToBatchRecord = () => {
     }
 
     // 将选择的指标数据传递到录入页面
-    const indicatorsData = encodeURIComponent(JSON.stringify(selectedIndicators.value));
+
+    uni.setStorageSync('selectedIndicators', JSON.stringify(selectedIndicators.value));
     uni.navigateTo({
-        url: `/pages/Front/BatchRecordForm?indicators=${indicatorsData}`
+        url: `/pages/Front/BatchRecordForm?`
     });
 };
 
@@ -375,7 +408,7 @@ const ShowDeleteModal = async (Id) => {
 <style scoped lang="scss">
 /* 页面内容区域 */
 .page-content {
-    padding: 10rpx 24rpx 0;
+    padding: 10rpx 24rpx 120rpx;
     min-height: 100vh;
     background-color: #f5f5f5;
 }
@@ -385,32 +418,179 @@ const ShowDeleteModal = async (Id) => {
     display: flex;
     gap: 16rpx;
     margin-bottom: 32rpx;
+    height: 280rpx;
+    /* 固定高度 */
+}
+
+/* 左侧卡片组 */
+.left-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16rpx;
+    flex: 1;
+}
+
+/* 右侧大卡片 */
+.right-card {
+    flex: 1;
+    height: 100%;
 }
 
 /* 入口卡片通用样式 */
 .entry-card {
-    flex: 1;
     display: flex;
     align-items: center;
     border-radius: 16rpx;
     padding: 24rpx 20rpx;
-    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border: 2rpx solid #e0e0e0;
+    box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
 
     /* 点击效果 */
     &:active {
         transform: scale(0.98);
-        opacity: 0.9;
+        box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.12);
     }
 
-    /* 主色调卡片 */
+    /* hover效果（触摸设备上的轻微变化） */
+    &:hover {
+        box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.12);
+        // border-color: #4CAF50;
+    }
+
+    /* 主色调卡片 - 官方选择指标 */
     &.primary {
-        background: linear-gradient(135deg, #4CAF50, #45a049);
+        // border-color: #4CAF50;
+
+        &:hover {
+            border-color: #2E7D32;
+            box-shadow: 0 8rpx 32rpx rgba(76, 175, 80, 0.2);
+        }
+
+        // .entry-icon {
+        //     background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        // }
+
+        .entry-title {
+            color: #2E7D32;
+        }
+
+        .entry-arrow uni-icons {
+            color: #4CAF50 !important;
+        }
     }
 
-    /* 副色调卡片 */
+    /* 副色调卡片 - 自主添加指标 */
     &.secondary {
-        background: linear-gradient(135deg, #2196F3, #1976D2);
+        // border-color: #66BB6A;
+
+        &:hover {
+            border-color: #388E3C;
+            box-shadow: 0 8rpx 32rpx rgba(102, 187, 106, 0.2);
+        }
+
+        // .entry-icon {
+        //     background: linear-gradient(135deg, #66BB6A, #388E3C);
+        // }
+
+        .entry-title {
+            color: #388E3C;
+        }
+
+        .entry-arrow uni-icons {
+            color: #66BB6A !important;
+        }
+    }
+
+    /* 第三色调卡片 - 我的填写记录 */
+    &.tertiary {
+        // border-color: #26A69A;
+
+        &:hover {
+            border-color: #00695C;
+            box-shadow: 0 8rpx 32rpx rgba(38, 166, 154, 0.2);
+        }
+
+        .entry-icon-large {
+            background: linear-gradient(135deg, #26A69A, #00695C);
+        }
+
+        .entry-title-large {
+            color: #00695C;
+        }
+
+        .entry-arrow uni-icons {
+            color: #26A69A !important;
+        }
+    }
+
+    /* 小卡片样式 */
+    &.small {
+        padding: 20rpx 16rpx;
+        height: 132rpx;
+        /* 固定高度，保证两个小卡片总高度等于大卡片 */
+
+        .entry-icon {
+            width: 48rpx;
+            height: 48rpx;
+            margin-right: 12rpx;
+        }
+
+        .entry-content {
+            .entry-title {
+                font-size: 26rpx;
+                font-weight: 600;
+                margin-bottom: 4rpx;
+            }
+
+            .entry-subtitle {
+                font-size: 20rpx;
+                opacity: 0.9;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        .entry-arrow {
+            margin-left: 8rpx;
+        }
+    }
+
+    /* 大卡片样式 */
+    &.large {
+        padding: 24rpx 20rpx;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .entry-icon-large {
+            width: 64rpx;
+            height: 64rpx;
+            margin-right: 16rpx;
+        }
+
+        .entry-content-large {
+            flex: 1;
+
+            .entry-title-large {
+                font-size: 30rpx;
+                font-weight: 600;
+                margin-bottom: 8rpx;
+            }
+
+            .entry-subtitle-large {
+                font-size: 24rpx;
+                opacity: 0.9;
+                line-height: 1.4;
+            }
+        }
+
+        .entry-arrow {
+            margin-left: 12rpx;
+        }
     }
 }
 
@@ -418,13 +598,34 @@ const ShowDeleteModal = async (Id) => {
 .entry-icon {
     width: 60rpx;
     height: 60rpx;
-    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 16rpx;
-    backdrop-filter: blur(10rpx);
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+
+    .icon-image {
+        width: 36rpx;
+        height: 36rpx;
+    }
+}
+
+/* 大卡片图标容器 */
+.entry-icon-large {
+    width: 64rpx;
+    height: 64rpx;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+
+    .icon-image-large {
+        width: 40rpx;
+        height: 40rpx;
+    }
 }
 
 /* 入口内容区域 */
@@ -435,11 +636,28 @@ const ShowDeleteModal = async (Id) => {
     justify-content: center;
 }
 
+/* 大卡片内容区域 */
+.entry-content-large {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* 入口主标题 */
 .entry-title {
     font-size: 28rpx;
     font-weight: 600;
-    color: #ffffff;
+    color: #333333;
+    margin-bottom: 4rpx;
+    line-height: 1.4;
+}
+
+/* 大卡片主标题 */
+.entry-title-large {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #333333;
     margin-bottom: 4rpx;
     line-height: 1.4;
 }
@@ -447,7 +665,14 @@ const ShowDeleteModal = async (Id) => {
 /* 入口副标题 */
 .entry-subtitle {
     font-size: 22rpx;
-    color: rgba(255, 255, 255, 0.8);
+    color: #666666;
+    line-height: 1.5;
+}
+
+/* 大卡片副标题 */
+.entry-subtitle-large {
+    font-size: 26rpx;
+    color: #666666;
     line-height: 1.5;
 }
 
@@ -793,7 +1018,6 @@ const ShowDeleteModal = async (Id) => {
 .indicators-grid {
     background: #ffffff;
     border-radius: 0 0 16rpx 16rpx;
-    
     overflow: hidden;
 }
 </style>

@@ -36,6 +36,12 @@
     },
     {
       "path":"pages/Front/HealthIndicatorForm"
+    },
+    {
+      "path":"pages/Front/BatchRecordForm"
+    },
+    {
+      "path":"pages/Front/HealthIndicatorRecordList"
     }
   ],
   "globalStyle": {

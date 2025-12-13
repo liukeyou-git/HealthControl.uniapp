@@ -1,0 +1,286 @@
+
+/* 全局页面样式 */
+page.data-v-d9542588 {
+    background-color: #f8fffe;
+}
+
+/* 登录容器 - 健康主题背景 */
+.login-container.data-v-d9542588 {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e8f8f5 0%, #f0fdf4 50%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 健康主题背景装饰 */
+.bg-decoration.data-v-d9542588 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+.health-circle.data-v-d9542588 {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    background: linear-gradient(45deg, #10b981, #34d399);
+}
+.health-circle-1.data-v-d9542588 {
+    width: 500rpx;
+    height: 500rpx;
+    top: -150rpx;
+    right: -150rpx;
+    animation: gentle-float-d9542588 15s ease-in-out infinite;
+}
+.health-circle-2.data-v-d9542588 {
+    width: 300rpx;
+    height: 300rpx;
+    bottom: -100rpx;
+    left: -100rpx;
+    animation: gentle-float-d9542588 20s ease-in-out infinite reverse;
+}
+
+/* 顶部标题区域 */
+.header-section.data-v-d9542588 {
+    padding: 120rpx 0 80rpx;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+.logo-wrapper.data-v-d9542588 {
+    margin-bottom: 40rpx;
+}
+.health-icon.data-v-d9542588 {
+    font-size: 120rpx;
+    background: linear-gradient(135deg, #10b981, #34d399);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4rpx 8rpx rgba(16, 185, 129, 0.2));
+}
+.app-title.data-v-d9542588 {
+    display: block;
+    font-size: 48rpx;
+    font-weight: 600;
+    color: #065f46;
+    margin-bottom: 16rpx;
+    letter-spacing: 2rpx;
+}
+.app-subtitle.data-v-d9542588 {
+    display: block;
+    font-size: 28rpx;
+    color: #6b7280;
+    opacity: 0.8;
+}
+
+/* 表单区域 */
+.form-section.data-v-d9542588 {
+    position: relative;
+    z-index: 1;
+    padding: 0 40rpx;
+}
+.form-container.data-v-d9542588 {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24rpx;
+    padding: 60rpx 40rpx;
+    box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.06);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* 表单样式 */
+.login-form.data-v-d9542588 {
+    width: 100%;
+}
+.form-group.data-v-d9542588 {
+    margin-bottom: 40rpx;
+}
+.input-wrapper.data-v-d9542588 {
+    display: flex;
+    align-items: center;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12rpx;
+    padding: 0 24rpx;
+    transition: all 0.3s ease;
+}
+.input-wrapper.data-v-d9542588:focus-within {
+    border-color: #10b981;
+    background: #ffffff;
+    box-shadow: 0 0 0 3rpx rgba(16, 185, 129, 0.1);
+}
+.input-icon.data-v-d9542588 {
+    font-size: 32rpx;
+    color: #6b7280;
+    margin-right: 16rpx;
+}
+.form-input.data-v-d9542588 {
+    flex: 1;
+    height: 88rpx;
+    font-size: 32rpx;
+    color: #374151;
+    background: transparent;
+    border: none;
+}
+.form-input.data-v-d9542588::-webkit-input-placeholder {
+    color: #9ca3af;
+}
+.form-input.data-v-d9542588::placeholder {
+    color: #9ca3af;
+}
+
+/* 角色选择区域 */
+.role-wrapper.data-v-d9542588 {
+    padding: 24rpx;
+    background: #f9fafb;
+    border-radius: 12rpx;
+    border: 1px solid #e5e7eb;
+}
+.role-label.data-v-d9542588 {
+    display: block;
+    font-size: 28rpx;
+    color: #374151;
+    margin-bottom: 16rpx;
+    font-weight: 500;
+}
+.role-checkbox.data-v-d9542588 {
+    width: 100%;
+}
+
+/* 登录按钮 */
+.login-button.data-v-d9542588 {
+    width: 100%;
+    height: 88rpx;
+    background: linear-gradient(135deg, #10b981, #34d399);
+    border: none;
+    border-radius: 44rpx;
+    margin: 40rpx 0 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8rpx 24rpx rgba(16, 185, 129, 0.3);
+    transition: all 0.3s ease;
+}
+.login-button.data-v-d9542588:active {
+    transform: translateY(2rpx);
+    box-shadow: 0 4rpx 12rpx rgba(16, 185, 129, 0.2);
+}
+.button-text.data-v-d9542588 {
+    color: #ffffff;
+    font-size: 32rpx;
+    font-weight: 600;
+    letter-spacing: 2rpx;
+}
+
+/* 底部操作链接 */
+.action-links.data-v-d9542588 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30rpx;
+    padding: 0 8rpx;
+}
+.link-text.data-v-d9542588 {
+    font-size: 28rpx;
+    color: #6b7280;
+    transition: color 0.3s ease;
+}
+.register-text.data-v-d9542588 {
+    color: #10b981;
+    font-weight: 500;
+}
+.link-text.data-v-d9542588:active {
+    color: #10b981;
+}
+
+/* 其他登录方式 */
+.other-login-section.data-v-d9542588 {
+    margin-top: 60rpx;
+    text-align: center;
+}
+.divider-line.data-v-d9542588 {
+    position: relative;
+    margin-bottom: 40rpx;
+}
+.divider-line.data-v-d9542588::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1rpx;
+    background: #e5e7eb;
+}
+.divider-text.data-v-d9542588 {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0 20rpx;
+    font-size: 24rpx;
+    color: #9ca3af;
+    position: relative;
+    z-index: 1;
+}
+.login-methods.data-v-d9542588 {
+    display: flex;
+    justify-content: center;
+}
+.login-method.data-v-d9542588 {
+    text-align: center;
+    padding: 20rpx;
+}
+.method-icon-bg.data-v-d9542588 {
+    width: 80rpx;
+    height: 80rpx;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12rpx;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+    border: 1px solid #f3f4f6;
+    transition: all 0.3s ease;
+}
+.method-icon-bg.data-v-d9542588:active {
+    transform: scale(0.95);
+    box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+.method-icon.data-v-d9542588 {
+    width: 40rpx;
+    height: 40rpx;
+}
+.method-label.data-v-d9542588 {
+    font-size: 24rpx;
+    color: #6b7280;
+    display: block;
+}
+
+/* 动画效果 */
+@keyframes gentle-float-d9542588 {
+0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+}
+50% {
+        transform: translateY(-30rpx) rotate(3deg);
+}
+}
+
+/* 响应式适配 */
+@media (max-width: 750rpx) {
+.form-container.data-v-d9542588 {
+        margin: 0 20rpx;
+        padding: 50rpx 30rpx;
+}
+.header-section.data-v-d9542588 {
+        padding: 100rpx 0 60rpx;
+}
+.health-icon.data-v-d9542588 {
+        font-size: 100rpx;
+}
+.app-title.data-v-d9542588 {
+        font-size: 42rpx;
+}
+}

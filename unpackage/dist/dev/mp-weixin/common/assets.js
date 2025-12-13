@@ -1,0 +1,22 @@
+"use strict";
+const UserIcon = "/assets/个人中心.97ab14ae.png";
+const HomeIcon = "/assets/首页.7471a702.png";
+const HealthIndicatorListIcon = "/assets/健康指标.1f0d3669.png";
+const WeChatBindIcon = "/assets/wx.4ba6637a.png";
+const UserInfoIcon = "/assets/个人信息.0e9d2d58.png";
+const PasswordEditIcon = "/assets/密码修改.de36ac3c.png";
+const userInfoIcon = "/assets/默认头像.075d7b74.png";
+const addIcon = "/assets/添加.6b5384cf.png";
+const selectIcon = "/assets/选择.cc40d972.png";
+const recordIcon = "/assets/记录.45372d3d.png";
+exports.HealthIndicatorListIcon = HealthIndicatorListIcon;
+exports.HomeIcon = HomeIcon;
+exports.PasswordEditIcon = PasswordEditIcon;
+exports.UserIcon = UserIcon;
+exports.UserInfoIcon = UserInfoIcon;
+exports.WeChatBindIcon = WeChatBindIcon;
+exports.addIcon = addIcon;
+exports.recordIcon = recordIcon;
+exports.selectIcon = selectIcon;
+exports.userInfoIcon = userInfoIcon;
+//# sourceMappingURL=../../.sourcemap/mp-weixin/common/assets.js.map

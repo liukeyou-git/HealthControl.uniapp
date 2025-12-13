@@ -1,0 +1,242 @@
+
+/* 全局页面样式 */
+page.data-v-95cbe21b {
+	background-color: #f8fffe;
+}
+
+/* 注册容器 - 健康主题背景 */
+.register-container.data-v-95cbe21b {
+	min-height: 100vh;
+	background: linear-gradient(135deg, #e8f8f5 0%, #f0fdf4 50%, #ffffff 100%);
+	position: relative;
+	overflow: hidden;
+}
+
+/* 健康主题背景装饰 */
+.bg-decoration.data-v-95cbe21b {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 0;
+}
+.health-circle.data-v-95cbe21b {
+	position: absolute;
+	border-radius: 50%;
+	opacity: 0.08;
+	background: linear-gradient(45deg, #10b981, #34d399);
+}
+.health-circle-1.data-v-95cbe21b {
+	width: 500rpx;
+	height: 500rpx;
+	top: -150rpx;
+	right: -150rpx;
+	animation: gentle-float-95cbe21b 15s ease-in-out infinite;
+}
+.health-circle-2.data-v-95cbe21b {
+	width: 300rpx;
+	height: 300rpx;
+	bottom: -100rpx;
+	left: -100rpx;
+	animation: gentle-float-95cbe21b 20s ease-in-out infinite reverse;
+}
+
+/* 顶部标题区域 */
+.header-section.data-v-95cbe21b {
+	padding: 100rpx 0 60rpx;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+}
+.logo-wrapper.data-v-95cbe21b {
+	margin-bottom: 40rpx;
+}
+.health-icon.data-v-95cbe21b {
+	font-size: 120rpx;
+	background: linear-gradient(135deg, #10b981, #34d399);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	filter: drop-shadow(0 4rpx 8rpx rgba(16, 185, 129, 0.2));
+}
+.app-title.data-v-95cbe21b {
+	display: block;
+	font-size: 48rpx;
+	font-weight: 600;
+	color: #065f46;
+	margin-bottom: 16rpx;
+	letter-spacing: 2rpx;
+}
+.app-subtitle.data-v-95cbe21b {
+	display: block;
+	font-size: 28rpx;
+	color: #6b7280;
+	opacity: 0.8;
+}
+
+/* 表单区域 */
+.form-section.data-v-95cbe21b {
+	position: relative;
+	z-index: 1;
+	padding: 0 40rpx;
+}
+.form-container.data-v-95cbe21b {
+	background: rgba(255, 255, 255, 0.95);
+	border-radius: 24rpx;
+	padding: 60rpx 40rpx;
+	box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.06);
+	-webkit-backdrop-filter: blur(10px);
+	        backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* 表单样式 */
+.register-form.data-v-95cbe21b {
+	width: 100%;
+}
+.form-group.data-v-95cbe21b {
+	margin-bottom: 40rpx;
+}
+.input-wrapper.data-v-95cbe21b {
+	display: flex;
+	align-items: center;
+	background: #f9fafb;
+	border: 1px solid #e5e7eb;
+	border-radius: 12rpx;
+	padding: 0 24rpx;
+	transition: all 0.3s ease;
+}
+.input-wrapper.data-v-95cbe21b:focus-within {
+	border-color: #10b981;
+	background: #ffffff;
+	box-shadow: 0 0 0 3rpx rgba(16, 185, 129, 0.1);
+}
+.input-icon.data-v-95cbe21b {
+	font-size: 32rpx;
+	color: #6b7280;
+	margin-right: 16rpx;
+}
+.form-input.data-v-95cbe21b {
+	flex: 1;
+	height: 88rpx;
+	font-size: 32rpx;
+	color: #374151;
+	background: transparent;
+	border: none;
+}
+.form-input.data-v-95cbe21b::-webkit-input-placeholder {
+	color: #9ca3af;
+}
+.form-input.data-v-95cbe21b::placeholder {
+	color: #9ca3af;
+}
+
+/* 角色选择区域 */
+.role-wrapper.data-v-95cbe21b {
+	padding: 24rpx;
+	background: #f9fafb;
+	border-radius: 12rpx;
+	border: 1px solid #e5e7eb;
+}
+.role-label.data-v-95cbe21b {
+	display: block;
+	font-size: 28rpx;
+	color: #374151;
+	margin-bottom: 16rpx;
+	font-weight: 500;
+}
+.role-checkbox.data-v-95cbe21b {
+	width: 100%;
+}
+
+/* 注册按钮 */
+.register-button.data-v-95cbe21b {
+	width: 100%;
+	height: 88rpx;
+	background: linear-gradient(135deg, #10b981, #34d399);
+	border: none;
+	border-radius: 44rpx;
+	margin: 40rpx 0 30rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 8rpx 24rpx rgba(16, 185, 129, 0.3);
+	transition: all 0.3s ease;
+}
+.register-button.data-v-95cbe21b:active {
+	transform: translateY(2rpx);
+	box-shadow: 0 4rpx 12rpx rgba(16, 185, 129, 0.2);
+}
+.button-text.data-v-95cbe21b {
+	color: #ffffff;
+	font-size: 32rpx;
+	font-weight: 600;
+	letter-spacing: 2rpx;
+}
+
+/* 底部操作链接 */
+.action-links.data-v-95cbe21b {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30rpx;
+	padding: 0 8rpx;
+}
+.link-text.data-v-95cbe21b {
+	font-size: 28rpx;
+	color: #10b981;
+	font-weight: 500;
+	transition: color 0.3s ease;
+}
+.link-text.data-v-95cbe21b:active {
+	color: #065f46;
+}
+
+/* 注册说明区域 */
+.register-tips.data-v-95cbe21b {
+	margin-top: 50rpx;
+	padding: 30rpx;
+	background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+	border-radius: 16rpx;
+	border: 1px solid rgba(16, 185, 129, 0.1);
+}
+.tips-title.data-v-95cbe21b {
+	font-size: 28rpx;
+	color: #065f46;
+	font-weight: 600;
+	margin-bottom: 20rpx;
+}
+.tips-item.data-v-95cbe21b {
+	font-size: 24rpx;
+	color: #374151;
+	line-height: 2;
+	opacity: 0.8;
+}
+
+/* 动画效果 */
+@keyframes gentle-float-95cbe21b {
+0%,
+	100% {
+		transform: translateY(0) rotate(0deg);
+}
+50% {
+		transform: translateY(-30rpx) rotate(3deg);
+}
+}
+
+/* 响应式适配 */
+@media (max-width: 750rpx) {
+.form-container.data-v-95cbe21b {
+		margin: 0 20rpx;
+		padding: 50rpx 30rpx;
+}
+.header-section.data-v-95cbe21b {
+		padding: 80rpx 0 50rpx;
+}
+.health-icon.data-v-95cbe21b {
+		font-size: 100rpx;
+}
+.app-title.data-v-95cbe21b {
+		font-size: 42rpx;
+}
+}
