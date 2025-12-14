@@ -48,6 +48,12 @@
     },
     {
       "path":"pages/Front/FoodList"
+    },
+    {
+      "path":"pages/Front/SportRecordList"
+    },
+    {
+      "path":"pages/Front/SportList"
     }
   ],
   "globalStyle": {

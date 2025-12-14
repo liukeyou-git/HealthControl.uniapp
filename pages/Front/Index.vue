@@ -66,7 +66,7 @@
                         <view class="action-icon diet">🍎</view>
                         <text class="action-label">饮食记录</text>
                     </view>
-                    <view class="action-item">
+                    <view class="action-item" @click="ToSportRecordList()">
                         <view class="action-icon sport">🏃‍♂️</view>
                         <text class="action-label">运动记录</text>
                     </view>
@@ -131,6 +131,12 @@ const commonStore = useCommonStore();
 const ToDietRecordList = () => {
     uni.navigateTo({
         url: '/pages/Front/DietRecordList'
+    });
+};
+
+const ToSportRecordList = () => {
+    uni.navigateTo({
+        url: '/pages/Front/SportRecordList'
     });
 };
 
