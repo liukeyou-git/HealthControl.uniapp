@@ -15,6 +15,11 @@ const _sfc_main = {
   __name: "Index",
   setup(__props) {
     const commonStore = store_index.useCommonStore();
+    const ToDietRecordList = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/Front/DietRecordList"
+      });
+    };
     common_vendor.onLoad(() => {
     });
     common_vendor.onShow(() => {
@@ -33,11 +38,13 @@ const _sfc_main = {
           shadow: true,
           ["background-color"]: "var(--primary-color)",
           ["status-bar"]: true,
-          title: "首页"
-        })
+          title: "健康管理"
+        }),
+        b: common_vendor.o(($event) => ToDietRecordList())
       };
     };
   }
 };
-wx.createPage(_sfc_main);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-b146bd57"]]);
+wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/Front/Index.js.map

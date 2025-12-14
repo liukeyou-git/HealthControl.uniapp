@@ -42,6 +42,12 @@
     },
     {
       "path":"pages/Front/HealthIndicatorRecordList"
+    },
+    {
+      "path":"pages/Front/DietRecordList"
+    },
+    {
+      "path":"pages/Front/FoodList"
     }
   ],
   "globalStyle": {

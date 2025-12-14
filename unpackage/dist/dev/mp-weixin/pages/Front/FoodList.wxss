@@ -1,0 +1,521 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.food-list-container.data-v-05c655f0 {
+  height: 100vh;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+}
+
+/* 主要内容区域 */
+.content-wrapper.data-v-05c655f0 {
+  display: flex;
+  height: calc(100vh - 44px);
+}
+
+/* 左侧分类菜单 */
+.category-menu.data-v-05c655f0 {
+  width: 120rpx;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fdf8 100%);
+  border-right: 1rpx solid #e0f0e0;
+  box-shadow: 2rpx 0 8rpx rgba(76, 175, 80, 0.1);
+}
+.category-menu .category-scroll.data-v-05c655f0 {
+  height: 100%;
+}
+.category-menu .category-item.data-v-05c655f0 {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1rpx solid #f0f0f0;
+  background-color: #fff;
+  transition: all 0.3s;
+}
+.category-menu .category-item.active.data-v-05c655f0 {
+  background: linear-gradient(90deg, #e8f5e8 0%, #d4f4d4 100%);
+  border-right: 4rpx solid #4CAF50;
+  box-shadow: inset -2rpx 0 4rpx rgba(76, 175, 80, 0.2);
+}
+.category-menu .category-item.active .category-name.data-v-05c655f0 {
+  color: #2E7D32;
+  font-weight: bold;
+}
+.category-menu .category-item .category-name.data-v-05c655f0 {
+  font-size: 24rpx;
+  color: #333;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* 右侧食物内容 */
+.food-content.data-v-05c655f0 {
+  flex: 1;
+}
+.food-content .food-scroll.data-v-05c655f0 {
+  height: 100%;
+  padding: 0 20rpx;
+}
+
+/* 分类区域 */
+.food-category-section.data-v-05c655f0 {
+  margin-bottom: 40rpx;
+}
+.food-category-section .category-title.data-v-05c655f0 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  padding: 20rpx 0;
+  z-index: 10;
+  border-radius: 12rpx 12rpx 0 0;
+  margin-bottom: 8rpx;
+}
+.food-category-section .category-title .title-text.data-v-05c655f0 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  display: flex;
+  align-items: center;
+}
+.food-category-section .category-title .title-text.data-v-05c655f0::before {
+  content: "🌿";
+  margin-right: 12rpx;
+  font-size: 28rpx;
+}
+
+/* 食物列表 */
+.food-list.data-v-05c655f0 {
+  background: linear-gradient(135deg, #ffffff 0%, #fafffe 100%);
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(76, 175, 80, 0.1);
+  border: 1rpx solid rgba(76, 175, 80, 0.1);
+}
+
+/* 食物项 */
+.food-item.data-v-05c655f0 {
+  display: flex;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+.food-item.data-v-05c655f0:last-child {
+  border-bottom: none;
+}
+.food-item.data-v-05c655f0:active {
+  background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
+}
+.food-item .food-image.data-v-05c655f0 {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 24rpx;
+}
+.food-item .food-image .food-cover.data-v-05c655f0 {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+.food-item .food-info.data-v-05c655f0 {
+  flex: 1;
+}
+.food-item .food-info .food-name.data-v-05c655f0 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  margin-bottom: 12rpx;
+  display: flex;
+  align-items: center;
+}
+.food-item .food-info .food-name.data-v-05c655f0::after {
+  content: "🍃";
+  margin-left: 8rpx;
+  font-size: 20rpx;
+  opacity: 0.7;
+}
+.food-item .food-info .food-nutrition.data-v-05c655f0 {
+  margin-bottom: 16rpx;
+}
+.food-item .food-info .food-nutrition .nutrition-item.data-v-05c655f0 {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #558B2F;
+  margin-right: 16rpx;
+  margin-bottom: 8rpx;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid rgba(76, 175, 80, 0.2);
+}
+.food-item .food-info .food-nutrition .nutrition-item.data-v-05c655f0::before {
+  content: "💚";
+  margin-right: 6rpx;
+  font-size: 16rpx;
+}
+.food-item .food-info .food-units .units-label.data-v-05c655f0 {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+.food-item .food-info .food-units .units-list.data-v-05c655f0 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+.food-item .food-info .food-units .units-list .unit-item.data-v-05c655f0 {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  border: 1rpx solid #4CAF50;
+  border-radius: 8rpx;
+  padding: 8rpx 16rpx;
+  transition: all 0.2s;
+}
+.food-item .food-info .food-units .units-list .unit-item.data-v-05c655f0:active {
+  background: linear-gradient(135deg, #d4f4d4 0%, #e0f0e0 100%);
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 4rpx rgba(76, 175, 80, 0.3);
+}
+.food-item .food-info .food-units .units-list .unit-item .unit-name.data-v-05c655f0 {
+  font-size: 22rpx;
+  color: #2E7D32;
+  margin-right: 8rpx;
+  font-weight: 600;
+}
+.food-item .food-info .food-units .units-list .unit-item .unit-calories.data-v-05c655f0 {
+  font-size: 20rpx;
+  color: #999;
+}
+
+/* 分量输入弹窗样式 */
+.portion-input-popup.data-v-05c655f0 {
+  width: 600rpx;
+  background: linear-gradient(135deg, #f8fdf8 0%, #ffffff 100%);
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(76, 175, 80, 0.2);
+}
+.portion-input-popup .portion-header.data-v-05c655f0 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #e0f0e0;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  border-radius: 24rpx 24rpx 0 0;
+}
+.portion-input-popup .portion-header .portion-title.data-v-05c655f0 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2E7D32;
+}
+.portion-input-popup .portion-header .portion-close.data-v-05c655f0 {
+  padding: 8rpx;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.portion-input-popup .portion-header .portion-close.data-v-05c655f0:active {
+  background: rgba(76, 175, 80, 0.1);
+  transform: scale(0.95);
+}
+.portion-input-popup .portion-content.data-v-05c655f0 {
+  padding: 32rpx;
+}
+.portion-input-popup .portion-content .food-summary.data-v-05c655f0 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
+  padding: 20rpx;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  border-radius: 16rpx;
+  border: 1rpx solid rgba(76, 175, 80, 0.2);
+}
+.portion-input-popup .portion-content .food-summary .summary-image.data-v-05c655f0 {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+}
+.portion-input-popup .portion-content .food-summary .summary-info.data-v-05c655f0 {
+  flex: 1;
+}
+.portion-input-popup .portion-content .food-summary .summary-info .summary-name.data-v-05c655f0 {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  margin-bottom: 8rpx;
+}
+.portion-input-popup .portion-content .food-summary .summary-info .summary-unit.data-v-05c655f0 {
+  font-size: 24rpx;
+  color: #558B2F;
+}
+.portion-input-popup .portion-content .input-section.data-v-05c655f0 {
+  margin-bottom: 32rpx;
+}
+.portion-input-popup .portion-content .input-section .input-label.data-v-05c655f0 {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  margin-bottom: 16rpx;
+}
+.portion-input-popup .portion-content .input-section .input-wrapper.data-v-05c655f0 {
+  display: flex;
+  align-items: center;
+}
+.portion-input-popup .portion-content .input-section .input-wrapper .input-unit.data-v-05c655f0 {
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  color: #558B2F;
+  font-weight: 600;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  padding: 12rpx 20rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid rgba(76, 175, 80, 0.3);
+}
+.portion-input-popup .portion-content .calculated-nutrition.data-v-05c655f0 {
+  margin-bottom: 32rpx;
+}
+.portion-input-popup .portion-content .calculated-nutrition .nutrition-title.data-v-05c655f0 {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  margin-bottom: 16rpx;
+}
+.portion-input-popup .portion-content .calculated-nutrition .nutrition-cards.data-v-05c655f0 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12rpx;
+}
+.portion-input-popup .portion-content .calculated-nutrition .nutrition-cards .nutrition-card.data-v-05c655f0 {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  padding: 16rpx;
+  border-radius: 12rpx;
+  text-align: center;
+  border: 1rpx solid rgba(76, 175, 80, 0.2);
+}
+.portion-input-popup .portion-content .calculated-nutrition .nutrition-cards .nutrition-card .card-label.data-v-05c655f0 {
+  display: block;
+  font-size: 22rpx;
+  color: #558B2F;
+  margin-bottom: 8rpx;
+}
+.portion-input-popup .portion-content .calculated-nutrition .nutrition-cards .nutrition-card .card-value.data-v-05c655f0 {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #2E7D32;
+}
+.portion-input-popup .portion-content .time-section.data-v-05c655f0 {
+  margin-bottom: 32rpx;
+}
+.portion-input-popup .portion-content .time-section .time-label.data-v-05c655f0 {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  margin-bottom: 16rpx;
+}
+.portion-input-popup .portion-content .time-section .time-display.data-v-05c655f0 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  border-radius: 12rpx;
+  border: 1rpx solid rgba(76, 175, 80, 0.3);
+}
+.portion-input-popup .portion-content .time-section .time-display .time-text.data-v-05c655f0 {
+  font-size: 26rpx;
+  color: #2E7D32;
+}
+.portion-input-popup .portion-content .action-buttons.data-v-05c655f0 {
+  display: flex;
+  gap: 16rpx;
+}
+.portion-input-popup .portion-content .action-buttons .cancel-btn.data-v-05c655f0,
+.portion-input-popup .portion-content .action-buttons .save-btn.data-v-05c655f0 {
+  flex: 1;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16rpx;
+  transition: all 0.2s;
+}
+.portion-input-popup .portion-content .action-buttons .cancel-btn .btn-text.data-v-05c655f0,
+.portion-input-popup .portion-content .action-buttons .save-btn .btn-text.data-v-05c655f0 {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.portion-input-popup .portion-content .action-buttons .cancel-btn.data-v-05c655f0 {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  border: 1rpx solid #ccc;
+}
+.portion-input-popup .portion-content .action-buttons .cancel-btn .btn-text.data-v-05c655f0 {
+  color: #666;
+}
+.portion-input-popup .portion-content .action-buttons .cancel-btn.data-v-05c655f0:active {
+  transform: scale(0.98);
+  background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+}
+.portion-input-popup .portion-content .action-buttons .save-btn.data-v-05c655f0 {
+  background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+  border: 1rpx solid #4CAF50;
+}
+.portion-input-popup .portion-content .action-buttons .save-btn .btn-text.data-v-05c655f0 {
+  color: #fff;
+}
+.portion-input-popup .portion-content .action-buttons .save-btn.data-v-05c655f0:active {
+  transform: scale(0.98);
+  background: linear-gradient(135deg, #388E3C 0%, #4CAF50 100%);
+}
+.portion-input-popup .portion-content .action-buttons .save-btn.disabled.data-v-05c655f0 {
+  background: linear-gradient(135deg, #ccc 0%, #999 100%);
+  border-color: #ccc;
+  opacity: 0.6;
+}
+.portion-input-popup .portion-content .action-buttons .save-btn.disabled .btn-text.data-v-05c655f0 {
+  color: #666;
+}
+
+/* 食物详情弹窗样式 */
+.food-detail-popup.data-v-05c655f0 {
+  max-height: 70vh;
+  background: linear-gradient(135deg, #f8fdf8 0%, #ffffff 100%);
+  border-radius: 24rpx 24rpx 0 0;
+}
+.food-detail-popup .popup-header.data-v-05c655f0 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #e0f0e0;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  border-radius: 24rpx 24rpx 0 0;
+}
+.food-detail-popup .popup-header .popup-title.data-v-05c655f0 {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  display: flex;
+  align-items: center;
+}
+.food-detail-popup .popup-header .popup-title.data-v-05c655f0::before {
+  content: "🌱";
+  margin-right: 12rpx;
+  font-size: 32rpx;
+}
+.food-detail-popup .popup-header .close-btn.data-v-05c655f0 {
+  padding: 8rpx;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.food-detail-popup .popup-header .close-btn.data-v-05c655f0:active {
+  background: rgba(76, 175, 80, 0.1);
+  transform: scale(0.95);
+}
+.food-detail-popup .popup-content.data-v-05c655f0 {
+  padding: 32rpx;
+}
+.food-detail-popup .popup-content .popup-image.data-v-05c655f0 {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 16rpx;
+  margin-bottom: 32rpx;
+}
+.food-detail-popup .popup-content .nutrition-detail.data-v-05c655f0 {
+  margin-bottom: 32rpx;
+}
+.food-detail-popup .popup-content .nutrition-detail .detail-title.data-v-05c655f0 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2E7D32;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+}
+.food-detail-popup .popup-content .nutrition-detail .detail-title.data-v-05c655f0::before {
+  content: "📊";
+  margin-right: 12rpx;
+  font-size: 24rpx;
+}
+.food-detail-popup .popup-content .nutrition-detail .nutrition-grid.data-v-05c655f0 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+}
+.food-detail-popup .popup-content .nutrition-detail .nutrition-grid .nutrition-cell.data-v-05c655f0 {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  padding: 20rpx;
+  border-radius: 12rpx;
+  text-align: center;
+  border: 1rpx solid rgba(76, 175, 80, 0.2);
+  box-shadow: 0 2rpx 8rpx rgba(76, 175, 80, 0.1);
+}
+.food-detail-popup .popup-content .nutrition-detail .nutrition-grid .nutrition-cell .cell-label.data-v-05c655f0 {
+  display: block;
+  font-size: 24rpx;
+  color: #558B2F;
+  margin-bottom: 8rpx;
+  font-weight: 500;
+}
+.food-detail-popup .popup-content .nutrition-detail .nutrition-grid .nutrition-cell .cell-value.data-v-05c655f0 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2E7D32;
+}
+.food-detail-popup .popup-content .unit-selection .detail-title.data-v-05c655f0 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+.food-detail-popup .popup-content .unit-selection .unit-options .unit-option.data-v-05c655f0 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx;
+  background-color: #f8f9fa;
+  border-radius: 12rpx;
+  margin-bottom: 16rpx;
+}
+.food-detail-popup .popup-content .unit-selection .unit-options .unit-option.data-v-05c655f0:last-child {
+  margin-bottom: 0;
+}
+.food-detail-popup .popup-content .unit-selection .unit-options .unit-option .unit-info .unit-main.data-v-05c655f0 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 12rpx;
+}
+.food-detail-popup .popup-content .unit-selection .unit-options .unit-option .unit-info .unit-weight.data-v-05c655f0 {
+  font-size: 24rpx;
+  color: #666;
+}
+.food-detail-popup .popup-content .unit-selection .unit-options .unit-option .unit-nutrition .unit-cal.data-v-05c655f0 {
+  font-size: 24rpx;
+  color: #007aff;
+  font-weight: bold;
+}

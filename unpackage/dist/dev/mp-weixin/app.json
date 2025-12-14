@@ -13,7 +13,9 @@
     "pages/Front/HealthIndicatorTypeList",
     "pages/Front/HealthIndicatorForm",
     "pages/Front/BatchRecordForm",
-    "pages/Front/HealthIndicatorRecordList"
+    "pages/Front/HealthIndicatorRecordList",
+    "pages/Front/DietRecordList",
+    "pages/Front/FoodList"
   ],
   "window": {
     "navigationBarTextStyle": "black",

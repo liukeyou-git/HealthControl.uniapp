@@ -17,6 +17,8 @@ if (!Math) {
   "./pages/Front/HealthIndicatorForm.js";
   "./pages/Front/BatchRecordForm.js";
   "./pages/Front/HealthIndicatorRecordList.js";
+  "./pages/Front/DietRecordList.js";
+  "./pages/Front/FoodList.js";
 }
 const _sfc_main = {
   __name: "App",

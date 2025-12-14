@@ -9156,6 +9156,12 @@ const pages = [
   },
   {
     path: "pages/Front/HealthIndicatorRecordList"
+  },
+  {
+    path: "pages/Front/DietRecordList"
+  },
+  {
+    path: "pages/Front/FoodList"
   }
 ];
 const globalStyle = {
