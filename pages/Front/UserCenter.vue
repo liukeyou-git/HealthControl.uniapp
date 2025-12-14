@@ -44,10 +44,22 @@
 							<text class="menu-text">密码修改</text>
 						</view>
 					</uni-grid-item>
-					<uni-grid-item>
+					<!-- <uni-grid-item>
 						<view class="menu-item" @click="navigateTo('/pages/Front/WeChatBind')">
 							<image :src="WeChatBindIcon" class="menu-icon"></image>
 							<text class="menu-text">微信绑定</text>
+						</view>
+					</uni-grid-item> -->
+					<uni-grid-item>
+						<view class="menu-item" @click="navigateTo('/pages/Front/MyHealthArticleList')">
+							<image :src="HealthArticleIcon" class="menu-icon"></image>
+							<text class="menu-text">我的健康知识</text>
+						</view>
+					</uni-grid-item>
+					<uni-grid-item>
+						<view class="menu-item" @click="navigateTo('/pages/Front/MyRecipeList')">
+							<image :src="RecipeIcon" class="menu-icon"></image>
+							<text class="menu-text">我的食谱</text>
 						</view>
 					</uni-grid-item>                    
 				</uni-grid>
@@ -65,6 +77,8 @@
 import UserInfoIcon from '@/assets/个人信息.png';
 import PasswordEditIcon from '@/assets/密码修改.png';
 import userInfoIcon from '@/assets/默认头像.png';
+import HealthArticleIcon from '@/assets/健康知识.png';
+import RecipeIcon from '@/assets/我的食谱.png';
 import WeChatBindIcon from '@/assets/wx.png';
 import { useCommonStore } from '@/store';
 import { computed, ref } from 'vue';

@@ -66,6 +66,18 @@
     },
     {
       "path":"pages/Front/HealthArticleForm"
+    },
+    {
+      "path":"pages/Front/RecipeList"
+    },
+    {
+      "path":"pages/Front/RecipeDetail"
+    },
+    {
+      "path":"pages/Front/MyRecipeList"
+    },
+    {
+      "path":"pages/Front/RecipeForm"
     }
   ],
   "globalStyle": {

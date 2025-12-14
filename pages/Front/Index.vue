@@ -78,7 +78,7 @@
                         <view class="action-icon article">📖</view>
                         <text class="action-label">健康知识</text>
                     </view>
-                    <view class="action-item">
+                    <view class="action-item" @click="ToRecipeList()">
                         <view class="action-icon recipe">🥗</view>
                         <text class="action-label">健康食谱</text>
                     </view>
@@ -155,6 +155,12 @@ const ToHealthRecordList = () => {
 const ToHealthArticleList = () => {
     uni.navigateTo({
         url: '/pages/Front/HealthArticleList'
+    });
+};
+
+const ToRecipeList = () => {
+    uni.navigateTo({
+        url: '/pages/Front/RecipeList'
     });
 };
 
