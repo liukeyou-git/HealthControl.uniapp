@@ -54,6 +54,18 @@
     },
     {
       "path":"pages/Front/SportList"
+    },
+    {
+      "path":"pages/Front/HealthArticleList"
+    },
+    {
+      "path":"pages/Front/HealthArticleDetail"
+    },
+    {
+      "path":"pages/Front/MyHealthArticleList"
+    },
+    {
+      "path":"pages/Front/HealthArticleForm"
     }
   ],
   "globalStyle": {
