@@ -61,6 +61,18 @@
 							<image :src="RecipeIcon" class="menu-icon"></image>
 							<text class="menu-text">我的食谱</text>
 						</view>
+					</uni-grid-item>
+					<uni-grid-item>
+						<view class="menu-item" @click="navigateTo('/pages/Front/CollectRecordList')">
+							<image :src="CollectIcon" class="menu-icon"></image>
+							<text class="menu-text">收藏记录</text>
+						</view>
+					</uni-grid-item>
+					<uni-grid-item>
+						<view class="menu-item" @click="navigateTo('/pages/Front/LikeRecordList')">
+							<image :src="LikeIcon" class="menu-icon"></image>
+							<text class="menu-text">点赞记录</text>
+						</view>
 					</uni-grid-item>                    
 				</uni-grid>
 			</uni-card>
@@ -80,6 +92,8 @@ import userInfoIcon from '@/assets/默认头像.png';
 import HealthArticleIcon from '@/assets/健康知识.png';
 import RecipeIcon from '@/assets/我的食谱.png';
 import WeChatBindIcon from '@/assets/wx.png';
+import CollectIcon from '@/assets/收藏记录.png';
+import LikeIcon from '@/assets/点赞记录.png';
 import { useCommonStore } from '@/store';
 import { computed, ref } from 'vue';
 

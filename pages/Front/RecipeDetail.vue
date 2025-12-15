@@ -6,17 +6,6 @@
 
         <!-- 内容区域 -->
         <view class="content-wrapper">
-            <!-- 标题和统计信息 -->
-            <view class="title-section">
-                <view class="recipe-title">{{ RecipeDetail.Title }}</view>
-                <view class="recipe-stats">
-                    <view class="stat-item">
-                        <uni-icons type="eye" color="#4CAF50" size="16"></uni-icons>
-                        <text class="stat-text">{{ RecipeDetail.ViewCount || 0 }} 次浏览</text>
-                    </view>
-                </view>
-            </view>
-
             <!-- 视频播放区域 -->
             <view class="media-section" v-if="RecipeDetail.VideoUrl">
                 <view class="section-header">
@@ -26,6 +15,17 @@
                 <view class="video-container">
                     <video :src="RecipeDetail.VideoUrl" controls class="recipe-video" poster="" object-fit="cover">
                     </video>
+                </view>
+            </view>
+
+            <!-- 标题和统计信息 -->
+            <view class="title-section">
+                <view class="recipe-title">{{ RecipeDetail.Title }}</view>
+                <view class="recipe-stats">
+                    <view class="stat-item">
+                        <uni-icons type="eye" color="#4CAF50" size="16"></uni-icons>
+                        <text class="stat-text">{{ RecipeDetail.ViewCount || 0 }} 次浏览</text>
+                    </view>
                 </view>
             </view>
 
@@ -96,6 +96,22 @@
 
 
         </view>
+
+        <!-- 底部操作栏 -->
+        <view class="bottom-actions">
+            <view class="action-button" :class="{ active: CollectId > 0 }" @click="CollectApi">
+                <text class="action-icon">{{ CollectId > 0 ? '❤️' : '🤍' }}</text>
+                <text class="action-text" :class="{ active: CollectId > 0 }">
+                    {{ CollectId > 0 ? '已收藏' : '收藏' }}
+                </text>
+            </view>
+            <view class="action-button" :class="{ active: LikeRecordId > 0 }" @click="LikeRecordApi">
+                <text class="action-icon">{{ LikeRecordId > 0 ? '👍' : '👍🏻' }}</text>
+                <text class="action-text" :class="{ active: LikeRecordId > 0 }">
+                    {{ LikeRecordId > 0 ? '已点赞' : '点赞' }}
+                </text>
+            </view>
+        </view>
     </view>
 </template>
 
@@ -127,6 +143,8 @@ onLoad(async (option) => {
 onShow(async () => {
     await AddViewCountApi();
     await GetRecipeDetailApi();
+    await CheckIsCollectApi();
+    await CheckIsLikeRecordApi();
 
 });
 
@@ -157,6 +175,109 @@ const AddViewCountApi = async () => {
     } = await Post('/Recipe/AddViewCount', { Id: where.Id });
 
 }
+
+
+const CollectId = ref(0);
+const LikeRecordId = ref(0);
+
+//检查是否收藏
+const CheckIsCollectApi = async () => {
+    let {
+        Success, Data
+    } = await Post('/CollectRecord/Get', {
+        Id: 0,
+        CollectUserId: UserId.value,
+        CollectType: "食谱",
+        RelativeId: where.Id
+    });
+    CollectId.value = Data.Id;
+
+}
+const CollectApi = async () => {
+    //如果是收藏状态
+    if (CollectId.value > 0) {
+        let {
+            Success
+        } = await Post('/CollectRecord/Delete', {
+            Id: CollectId.value
+        });
+        if (Success) {
+            CollectId.value = 0;
+            uni.showToast({
+                title: "取消收藏",
+                icon: "none"
+            });
+        }
+
+    } else {
+        let {
+            Success, Data
+        } = await Post('/CollectRecord/CreateOrEdit', {
+
+            CollectUserId: UserId.value,
+            CollectType: "食谱",
+            RelativeId: where.Id
+        });
+        if (Success) {
+            CollectId.value = Data.Id;
+            uni.showToast({
+                title: "收藏成功",
+                icon: "none"
+            });
+        }
+    }
+
+}
+
+//检查是否点赞
+const CheckIsLikeRecordApi = async () => {
+    let {
+        Success, Data
+    } = await Post('/LikeRecord/Get', {
+        Id: 0,
+        LikeUserId: UserId.value,
+        LikeType: "食谱",
+        RelativeId: where.Id
+    });
+    LikeRecordId.value = Data.Id;
+
+}
+const LikeRecordApi = async () => {
+    //如果是点赞状态
+    if (LikeRecordId.value > 0) {
+        let {
+            Success
+        } = await Post('/LikeRecord/Delete', {
+            Id: LikeRecordId.value
+        });
+        if (Success) {
+            LikeRecordId.value = 0;
+            uni.showToast({
+                title: "取消点赞",
+                icon: "none"
+            });
+        }
+
+    } else {
+        let {
+            Success, Data
+        } = await Post('/LikeRecord/CreateOrEdit', {
+
+            LikeUserId: UserId.value,
+            LikeType: "食谱",
+            RelativeId: where.Id
+        });
+        if (Success) {
+            LikeRecordId.value = Data.Id;
+            uni.showToast({
+                title: "点赞成功",
+                icon: "none"
+            });
+        }
+    }
+
+}
+
 
 // 格式化时间
 const formatTime = (timeStr) => {
@@ -194,7 +315,8 @@ const previewImage = (index) => {
 }
 
 .content-wrapper {
-    padding-bottom: 30px;
+    padding-bottom: 120upx;
+    /* 为底部操作栏留出空间 */
 }
 
 /* 标题区域 */
@@ -432,5 +554,69 @@ const previewImage = (index) => {
 
 ::v-deep .uni-swiper-dot-active {
     background-color: #4CAF50 !important;
+}
+
+/* 底部操作栏 */
+.bottom-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20upx 40upx;
+    box-shadow: 0 -4upx 16upx rgba(0, 0, 0, 0.1);
+    border-top: 1upx solid #f0f0f0;
+    z-index: 1000;
+}
+
+/* 操作按钮 */
+.action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16upx 32upx;
+    border-radius: 12upx;
+    transition: all 0.3s ease;
+    min-width: 120upx;
+    height: 80upx;
+}
+
+.action-button:active {
+    transform: scale(0.95);
+    background-color: #f8f9fa;
+}
+
+/* 操作按钮图标 */
+.action-icon {
+    font-size: 48upx;
+    line-height: 1;
+    margin-bottom: 4upx;
+}
+
+/* 操作按钮文字 */
+.action-text {
+    font-size: 24upx;
+    color: #999;
+    margin-top: 8upx;
+    transition: color 0.3s ease;
+}
+
+/* 激活状态的按钮文字 */
+.action-text.active {
+    font-weight: 500;
+}
+
+/* 收藏按钮激活状态 */
+.action-button.active .action-text {
+    color: #ff6b6b;
+}
+
+/* 点赞按钮激活状态 */
+.action-button:last-child.active .action-text {
+    color: #4CAF50;
 }
 </style>

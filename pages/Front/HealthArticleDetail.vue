@@ -51,6 +51,22 @@
             </view>
 
         </view>
+
+        <!-- 底部操作栏 -->
+        <view class="bottom-actions">
+            <view class="action-button" :class="{ active: CollectId > 0 }" @click="CollectApi">
+                <text class="action-icon">{{ CollectId > 0 ? '❤️' : '🤍' }}</text>
+                <text class="action-text" :class="{ active: CollectId > 0 }">
+                    {{ CollectId > 0 ? '已收藏' : '收藏' }}
+                </text>
+            </view>
+            <view class="action-button" :class="{ active: LikeRecordId > 0 }" @click="LikeRecordApi">
+                <text class="action-icon">{{ LikeRecordId > 0 ? '👍' : '👍🏻' }}</text>
+                <text class="action-text" :class="{ active: LikeRecordId > 0 }">
+                    {{ LikeRecordId > 0 ? '已点赞' : '点赞' }}
+                </text>
+            </view>
+        </view>
     </view>
 </template>
 
@@ -83,6 +99,8 @@ onLoad(async (option) => {
 onShow(async () => {
     await AddViewCountApi();
     await GetHealthArticleApi();
+    await CheckIsCollectApi();
+    await CheckIsLikeRecordApi();
 });
 
 onReady(async () => {
@@ -109,6 +127,108 @@ const AddViewCountApi = async () => {
 
 }
 
+
+const CollectId = ref(0);
+const LikeRecordId = ref(0);
+
+//检查是否收藏
+const CheckIsCollectApi = async () => {
+    let {
+        Success, Data
+    } = await Post('/CollectRecord/Get', {
+        Id: 0,
+        CollectUserId: UserId.value,
+        CollectType: "健康知识",
+        RelativeId: HealthArticleId.value
+    });
+    CollectId.value = Data.Id;
+
+}
+const CollectApi = async () => {
+    //如果是收藏状态
+    if (CollectId.value > 0) {
+        let {
+            Success
+        } = await Post('/CollectRecord/Delete', {
+            Id: CollectId.value
+        });
+        if (Success) {
+            CollectId.value = 0;
+            uni.showToast({
+                title: "取消收藏",
+                icon: "none"
+            });
+        }
+
+    } else {
+        let {
+            Success, Data
+        } = await Post('/CollectRecord/CreateOrEdit', {
+
+            CollectUserId: UserId.value,
+            CollectType: "健康知识",
+            RelativeId: HealthArticleId.value
+        });
+        if (Success) {
+            CollectId.value = Data.Id;
+            uni.showToast({
+                title: "收藏成功",
+                icon: "none"
+            });
+        }
+    }
+
+}
+
+//检查是否点赞
+const CheckIsLikeRecordApi = async () => {
+    let {
+        Success, Data
+    } = await Post('/LikeRecord/Get', {
+        Id: 0,
+        LikeUserId: UserId.value,
+        LikeType: "健康知识",
+        RelativeId: HealthArticleId.value
+    });
+    LikeRecordId.value = Data.Id;
+
+}
+const LikeRecordApi = async () => {
+    //如果是点赞状态
+    if (LikeRecordId.value > 0) {
+        let {
+            Success
+        } = await Post('/LikeRecord/Delete', {
+            Id: LikeRecordId.value
+        });
+        if (Success) {
+            LikeRecordId.value = 0;
+            uni.showToast({
+                title: "取消点赞",
+                icon: "none"
+            });
+        }
+
+    } else {
+        let {
+            Success, Data
+        } = await Post('/LikeRecord/CreateOrEdit', {
+
+            LikeUserId: UserId.value,
+            LikeType: "健康知识",
+            RelativeId: HealthArticleId.value
+        });
+        if (Success) {
+            LikeRecordId.value = Data.Id;
+            uni.showToast({
+                title: "点赞成功",
+                icon: "none"
+            });
+        }
+    }
+
+}
+
 // 格式化日期
 const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -127,10 +247,10 @@ const formatDate = (dateString) => {
 <style scoped lang="scss">
 /* 文章容器 */
 .article-container {
-
-
     background-color: #f8f9fa;
     min-height: calc(100vh - 176upx);
+    padding-bottom: 120upx;
+    /* 为底部操作栏留出空间 */
 }
 
 /* 文章头部信息 */
@@ -248,7 +368,69 @@ const formatDate = (dateString) => {
     color: #666;
 }
 
+/* 底部操作栏 */
+.bottom-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20upx 40upx;
+    box-shadow: 0 -4upx 16upx rgba(0, 0, 0, 0.1);
+    border-top: 1upx solid #f0f0f0;
+    z-index: 1000;
+}
 
+/* 操作按钮 */
+.action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16upx 32upx;
+    border-radius: 12upx;
+    transition: all 0.3s ease;
+    min-width: 120upx;
+    height: 80upx;
+}
+
+.action-button:active {
+    transform: scale(0.95);
+    background-color: #f8f9fa;
+}
+
+/* 操作按钮图标 */
+.action-icon {
+    font-size: 48upx;
+    line-height: 1;
+    margin-bottom: 4upx;
+}
+
+/* 操作按钮文字 */
+.action-text {
+    font-size: 24upx;
+    color: #999;
+    margin-top: 8upx;
+    transition: color 0.3s ease;
+}
+
+/* 激活状态的按钮文字 */
+.action-text.active {
+    font-weight: 500;
+}
+
+/* 收藏按钮激活状态 */
+.action-button.active .action-text {
+    color: #ff6b6b;
+}
+
+/* 点赞按钮激活状态 */
+.action-button:last-child.active .action-text {
+    color: #4CAF50;
+}
 
 
 /* 响应式设计 */

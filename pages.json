@@ -78,6 +78,12 @@
     },
     {
       "path":"pages/Front/RecipeForm"
+    },
+    {
+      "path":"pages/Front/LikeRecordList"
+    },
+    {
+      "path":"pages/Front/CollectRecordList"
     }
   ],
   "globalStyle": {
