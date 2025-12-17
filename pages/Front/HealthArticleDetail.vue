@@ -50,6 +50,41 @@
                 </view>
             </view>
 
+            <!-- 推荐文章区域 -->
+            <view class="recommend-section" v-if="RecommendList.length > 0">
+                <view class="recommend-title">
+                    <text class="title-text">相关推荐</text>
+                </view>
+                <view class="recommend-list">
+                    <view class="recommend-item" v-for="item in RecommendList" :key="item.Id" @click="goToDetail(item.Id)">
+                        <!-- 文章封面 -->
+                        <view class="recommend-cover">
+                            <image :src="item.Cover" mode="aspectFill" class="cover-image" />
+                        </view>
+
+                        <!-- 文章信息 -->
+                        <view class="recommend-content">
+                            <!-- 文章标题和统计信息 -->
+                            <view class="title-section">
+                                <view class="recommend-item-title">{{ item.Title }}</view>
+                                <view class="recommend-stats">
+                                    <text class="stats-views">{{ item.ViewCount }}次浏览</text>
+                                    <text class="stats-time">{{ formatDate(item.CreationTime) }}</text>
+                                </view>
+                            </view>
+
+                            <!-- 分类和作者信息 -->
+                            <view class="recommend-meta">
+                                <text class="meta-category">{{ item.HealthArticleTypeDto && item.HealthArticleTypeDto.Name
+                                }}</text>
+                                <text class="meta-author">{{ item.PublishUserDto && (item.PublishUserDto.Name ||
+                                    item.PublishUserDto.UserName) }}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
         </view>
 
         <!-- 底部操作栏 -->
@@ -101,6 +136,7 @@ onShow(async () => {
     await GetHealthArticleApi();
     await CheckIsCollectApi();
     await CheckIsLikeRecordApi();
+    await RecommendListApi();
 });
 
 onReady(async () => {
@@ -229,6 +265,17 @@ const LikeRecordApi = async () => {
 
 }
 
+const RecommendList = ref([]);
+//推荐
+const RecommendListApi = async () => {
+    let {
+        Data
+    } = await Post('/HealthArticle/RecommendList', {
+        Id: HealthArticleId.value
+    });
+    RecommendList.value = Data;
+}
+
 // 格式化日期
 const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -239,6 +286,13 @@ const formatDate = (dateString) => {
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit'
+    });
+}
+
+// 跳转到推荐文章详情页
+const goToDetail = (articleId) => {
+    uni.redirectTo({
+        url: `/pages/Front/HealthArticleDetail?HealthArticleId=${articleId}`
     });
 }
 
@@ -432,6 +486,145 @@ const formatDate = (dateString) => {
     color: #4CAF50;
 }
 
+/* 推荐文章区域 */
+.recommend-section {
+    margin-top: 20upx;
+    background-color: #fff;
+    border-radius: 24upx;
+    padding: 40upx;
+    margin-bottom: 122upx;
+    box-shadow: 0 4upx 16upx rgba(0, 0, 0, 0.1);
+}
+
+/* 推荐标题 */
+.recommend-title {
+    margin-bottom: 32upx;
+    padding-bottom: 16upx;
+    border-bottom: 2upx solid #f0f0f0;
+}
+
+.title-text {
+    font-size: 36upx;
+    font-weight: bold;
+    color: #333;
+    position: relative;
+}
+
+.title-text::before {
+    content: '';
+    position: absolute;
+    left: -16upx;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8upx;
+    height: 32upx;
+    background: linear-gradient(135deg, var(--primary-color), #4CAF50);
+    border-radius: 4upx;
+}
+
+/* 推荐列表 */
+.recommend-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24upx;
+}
+
+/* 推荐文章卡片 */
+.recommend-item {
+    display: flex;
+    background-color: #f8f9fa;
+    border-radius: 16upx;
+    padding: 24upx;
+    transition: all 0.3s ease;
+    border: 2upx solid transparent;
+}
+
+.recommend-item:active {
+    transform: scale(0.98);
+    background-color: #e9ecef;
+    border-color: var(--primary-color);
+}
+
+/* 推荐文章封面 */
+.recommend-cover {
+    flex-shrink: 0;
+    width: 160upx;
+    height: 120upx;
+    border-radius: 12upx;
+    overflow: hidden;
+    margin-right: 24upx;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 12upx;
+}
+
+/* 推荐文章内容区域 */
+.recommend-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* 标题和统计信息区域 */
+.title-section {
+    margin-bottom: 16upx;
+}
+
+/* 推荐文章标题 */
+.recommend-item-title {
+    font-size: 30upx;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 8upx;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 推荐文章元信息 */
+.recommend-meta {
+    display: flex;
+    align-items: center;
+    gap: 16upx;
+}
+
+.meta-category {
+    font-size: 24upx;
+    color: var(--primary-color);
+    background-color: rgba(74, 144, 226, 0.1);
+    padding: 4upx 12upx;
+    border-radius: 12upx;
+    border: 1upx solid rgba(74, 144, 226, 0.2);
+}
+
+.meta-author {
+    font-size: 24upx;
+    color: #666;
+}
+
+/* 推荐文章统计信息 */
+.recommend-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stats-views {
+    font-size: 22upx;
+    color: #999;
+}
+
+.stats-time {
+    font-size: 22upx;
+    color: #999;
+}
 
 /* 响应式设计 */
 @media (max-width: 750px) {

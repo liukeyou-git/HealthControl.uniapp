@@ -102,7 +102,7 @@ const recipeList = computed(() => {
 });
 
 const where = reactive({
-
+    LikeUserId: UserId.value
 });
 
 // 生命周期钩子

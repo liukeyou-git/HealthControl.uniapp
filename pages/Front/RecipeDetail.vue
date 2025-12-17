@@ -65,7 +65,7 @@
             <view class="media-section" v-if="imageList.length > 0">
                 <view class="section-header">
                     <uni-icons type="image" color="#4CAF50" size="20"></uni-icons>
-                    <text class="section-title">制作过程</text>
+                    <text class="section-title">效果展示</text>
                 </view>
                 <view class="gallery-container">
                     <swiper class="gallery-swiper" indicator-dots circular indicator-color="#E8F5E9"
@@ -75,7 +75,7 @@
                                 <image :src="image" mode="aspectFill" class="gallery-image" @click="previewImage(index)">
                                 </image>
                                 <view class="image-overlay">
-                                    <text class="step-number">步骤 {{ index + 1 }}</text>
+                                    <text class="step-number">{{ index + 1 }}</text>
                                 </view>
                             </view>
                         </swiper-item>
@@ -94,6 +94,62 @@
                 </view>
             </view>
 
+            <!-- 推荐食谱区域 -->
+            <view class="recommend-section" v-if="RecommendList.length > 0">
+                <view class="recommend-header">
+                    <view class="header-icon">
+                        <uni-icons type="heart" color="#4CAF50" size="22"></uni-icons>
+                    </view>
+                    <text class="recommend-title">猜你喜欢</text>
+                    <view class="header-decoration"></view>
+                </view>
+
+                <view class="recommend-grid">
+                    <view class="recommend-card" v-for="item in RecommendList" :key="item.Id" @click="goToDetail(item.Id)">
+                        <!-- 食谱封面区域 -->
+                        <view class="card-image-wrapper">
+                            <image :src="item.Cover" mode="aspectFill" class="card-image" />
+                            <view class="image-overlay">
+                                <view class="view-count">
+                                    <uni-icons type="eye" color="#fff" size="12"></uni-icons>
+                                    <text class="count-text">{{ item.ViewCount }}</text>
+                                </view>
+
+                            </view>
+                        </view>
+
+                        <!-- 食谱信息区域 -->
+                        <view class="card-content">
+                            <view class="recipe-title">{{ item.Title }}</view>
+
+                            <!-- 作者信息 -->
+                            <view class="author-section">
+                                <view class="author-avatar">
+                                    <image v-if="item.PublishUserDto && item.PublishUserDto.ImageUrls"
+                                        :src="item.PublishUserDto.ImageUrls" class="avatar-img" mode="aspectFill" />
+                                    <view v-else class="avatar-placeholder">
+                                        <uni-icons type="person" color="#4CAF50" size="14"></uni-icons>
+                                    </view>
+                                </view>
+                                <view class="author-info">
+                                    <text class="author-name">{{ item.PublishUserDto && (item.PublishUserDto.Name ||
+                                        item.PublishUserDto.UserName) || '匿名用户' }}</text>
+                                    <text class="publish-time">{{ formatTime(item.CreationTime) }}</text>
+                                </view>
+                            </view>
+
+                            <!-- 底部标签 -->
+                            <view class="card-tags">
+                                <view class="status-tag">{{ item.AuditStatusFormat }}</view>
+                                <view class="like-indicator" v-if="item.ViewCount > 200">
+                                    <uni-icons type="fire" color="#FF6B35" size="12"></uni-icons>
+                                    <text class="hot-text">热门</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
 
         </view>
 
@@ -145,6 +201,7 @@ onShow(async () => {
     await GetRecipeDetailApi();
     await CheckIsCollectApi();
     await CheckIsLikeRecordApi();
+    await RecommendListApi();
 
 });
 
@@ -305,7 +362,23 @@ const previewImage = (index) => {
         urls: imageList.value
     });
 }
+const RecommendList = ref([]);
+//推荐
+const RecommendListApi = async () => {
+    let {
+        Data
+    } = await Post('/Recipe/RecommendList', {
+        Id: where.Id
+    });
+    RecommendList.value = Data;
+}
 
+// 跳转到推荐食谱详情页
+const goToDetail = (recipeId) => {
+    uni.redirectTo({
+        url: `/pages/Front/RecipeDetail?RecipeId=${recipeId}`
+    });
+}
 </script>
 
 <style scoped lang="scss">
@@ -322,17 +395,17 @@ const previewImage = (index) => {
 /* 标题区域 */
 .title-section {
     background: #fff;
-    margin: 15px;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.1);
-    border: 1px solid #E8F5E9;
+    margin: 30upx;
+    border-radius: 32upx;
+    padding: 40upx;
+    box-shadow: 0 8upx 40upx rgba(76, 175, 80, 0.1);
+    border: 2upx solid #E8F5E9;
 
     .recipe-title {
-        font-size: 24px;
+        font-size: 48upx;
         font-weight: bold;
         color: #1B5E20;
-        margin-bottom: 12px;
+        margin-bottom: 24upx;
         line-height: 1.4;
     }
 
@@ -343,9 +416,9 @@ const previewImage = (index) => {
 
             .stat-text {
                 color: #4CAF50;
-                font-size: 14px;
+                font-size: 28upx;
                 font-weight: 500;
-                margin-left: 6px;
+                margin-left: 12upx;
             }
         }
     }
@@ -353,29 +426,29 @@ const previewImage = (index) => {
 
 /* 信息卡片区域 */
 .info-cards {
-    padding: 20px 15px 0;
+    padding: 40upx 30upx 0;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 30upx;
 }
 
 .card {
     background: #fff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.1);
-    border: 1px solid #E8F5E9;
+    border-radius: 32upx;
+    padding: 40upx;
+    box-shadow: 0 8upx 40upx rgba(76, 175, 80, 0.1);
+    border: 2upx solid #E8F5E9;
 
     .card-header {
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 30upx;
 
         .card-title {
-            font-size: 16px;
+            font-size: 32upx;
             font-weight: 600;
             color: #2E7D32;
-            margin-left: 8px;
+            margin-left: 16upx;
         }
     }
 }
@@ -386,19 +459,19 @@ const previewImage = (index) => {
     align-items: center;
 
     .publisher-avatar {
-        margin-right: 15px;
+        margin-right: 30upx;
 
         .avatar-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
-            border: 3px solid #E8F5E9;
+            width: 100upx;
+            height: 100upx;
+            border-radius: 50upx;
+            border: 6upx solid #E8F5E9;
         }
 
         .avatar-placeholder {
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
+            width: 100upx;
+            height: 100upx;
+            border-radius: 50upx;
             background: #E8F5E9;
             display: flex;
             align-items: center;
@@ -410,10 +483,10 @@ const previewImage = (index) => {
         flex: 1;
 
         .publisher-name {
-            font-size: 18px;
+            font-size: 36upx;
             font-weight: 600;
             color: #1B5E20;
-            margin-bottom: 6px;
+            margin-bottom: 12upx;
         }
 
         .publish-meta {
@@ -422,9 +495,9 @@ const previewImage = (index) => {
                 align-items: center;
 
                 .meta-text {
-                    font-size: 14px;
+                    font-size: 28upx;
                     color: #4CAF50;
-                    margin-left: 6px;
+                    margin-left: 12upx;
                     font-weight: 500;
                 }
             }
@@ -436,101 +509,182 @@ const previewImage = (index) => {
 
 /* 媒体区域 */
 .media-section {
-    margin: 20px 15px;
+    margin: 40upx 30upx;
 
     .section-header {
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 30upx;
 
         .section-title {
-            font-size: 18px;
+            font-size: 36upx;
             font-weight: 600;
             color: #1B5E20;
-            margin-left: 10px;
+            margin-left: 20upx;
         }
     }
 }
 
 /* 视频容器 */
 .video-container {
-    border-radius: 16px;
+    border-radius: 32upx;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(76, 175, 80, 0.15);
+    box-shadow: 0 16upx 64upx rgba(76, 175, 80, 0.15);
 
     .recipe-video {
         width: 100%;
-        height: 220px;
+        height: 440upx;
     }
 }
 
-/* 图片轮播 */
+/* 效果展示区域 */
 .gallery-container {
-    border-radius: 16px;
+    position: relative;
+    border-radius: 40upx;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(76, 175, 80, 0.15);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+    box-shadow: 0 20upx 80upx rgba(76, 175, 80, 0.15);
+    border: 3upx solid rgba(76, 175, 80, 0.1);
+
+    /* 装饰性渐变边框 */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8upx;
+        background: linear-gradient(90deg, #4CAF50, #81C784, #A5D6A7, #4CAF50);
+        z-index: 1;
+    }
 
     .gallery-swiper {
-        height: 280px;
+        height: 600upx;
+        position: relative;
 
         .gallery-item {
             position: relative;
             height: 100%;
+            border-radius: 40upx;
+            overflow: hidden;
 
             .gallery-image {
                 width: 100%;
                 height: 100%;
+                transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            /* 悬停效果 */
+            &:active .gallery-image {
+                transform: scale(1.05);
             }
 
             .image-overlay {
                 position: absolute;
-                bottom: 15px;
-                left: 15px;
-                background: rgba(76, 175, 80, 0.9);
-                padding: 6px 12px;
-                border-radius: 12px;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+                padding: 60upx 40upx 40upx;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
 
                 .step-number {
-                    color: #fff;
-                    font-size: 12px;
-                    font-weight: 600;
+                    color: #ffffff;
+                    font-size: 32upx;
+                    font-weight: 700;
+                    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+                    padding: 16upx 32upx;
+                    border-radius: 50upx;
+                    box-shadow: 0 8upx 24upx rgba(76, 175, 80, 0.4);
+                    backdrop-filter: blur(20upx);
+                    border: 2upx solid rgba(255, 255, 255, 0.2);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 120upx;
+                }
+
+                /* 添加装饰性元素 */
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 20upx;
+                    right: 40upx;
+                    width: 60upx;
+                    height: 60upx;
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    backdrop-filter: blur(10upx);
+                    border: 1upx solid rgba(255, 255, 255, 0.2);
                 }
             }
         }
+    }
+
+    /* 自定义轮播指示器样式 */
+    ::v-deep .uni-swiper-dot {
+        width: 16upx !important;
+        height: 16upx !important;
+        border-radius: 8upx !important;
+        background-color: rgba(255, 255, 255, 0.3) !important;
+        margin: 0 8upx !important;
+        transition: all 0.3s ease !important;
+    }
+
+    ::v-deep .uni-swiper-dot-active {
+        width: 40upx !important;
+        background: linear-gradient(90deg, #4CAF50, #66BB6A) !important;
+        box-shadow: 0 4upx 16upx rgba(76, 175, 80, 0.4) !important;
+    }
+
+    /* 轮播容器底部装饰 */
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100upx;
+        height: 8upx;
+        background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+        border-radius: 4upx 4upx 0 0;
+        z-index: 2;
     }
 }
 
 /* 内容区域 */
 .content-section {
-    margin: 20px 15px;
+    margin: 40upx 30upx;
 
     .section-header {
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 30upx;
 
         .section-title {
-            font-size: 18px;
+            font-size: 36upx;
             font-weight: 600;
             color: #1B5E20;
-            margin-left: 10px;
+            margin-left: 20upx;
         }
     }
 
     .content-card {
         background: #fff;
-        border-radius: 16px;
-        padding: 25px;
-        box-shadow: 0 4px 20px rgba(76, 175, 80, 0.1);
-        border: 1px solid #E8F5E9;
+        border-radius: 32upx;
+        padding: 50upx;
+        box-shadow: 0 8upx 40upx rgba(76, 175, 80, 0.1);
+        border: 2upx solid #E8F5E9;
 
         .rich-content {
             line-height: 1.8;
             color: #424242;
-            font-size: 16px;
+            font-size: 32upx;
 
             ::v-deep p {
-                margin-bottom: 15px;
+                margin-bottom: 30upx;
 
                 &:last-child {
                     margin-bottom: 0;
@@ -547,14 +701,7 @@ const previewImage = (index) => {
 
 
 
-/* 全局样式调整 */
-::v-deep .uni-swiper-dot {
-    background-color: rgba(255, 255, 255, 0.4) !important;
-}
 
-::v-deep .uni-swiper-dot-active {
-    background-color: #4CAF50 !important;
-}
 
 /* 底部操作栏 */
 .bottom-actions {
@@ -618,5 +765,257 @@ const previewImage = (index) => {
 /* 点赞按钮激活状态 */
 .action-button:last-child.active .action-text {
     color: #4CAF50;
+}
+
+/* 推荐食谱区域 */
+.recommend-section {
+    margin: 40upx 30upx;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+    border-radius: 40upx;
+    padding: 50upx 40upx;
+    box-shadow: 0 16upx 64upx rgba(76, 175, 80, 0.12);
+    border: 2upx solid rgba(76, 175, 80, 0.1);
+    margin-bottom: 140upx;
+    position: relative;
+    overflow: hidden;
+}
+
+.recommend-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6upx;
+    background: linear-gradient(90deg, #4CAF50, #81C784, #A5D6A7);
+}
+
+/* 推荐头部 */
+.recommend-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50upx;
+    position: relative;
+}
+
+.header-icon {
+    margin-right: 24upx;
+    padding: 16upx;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(129, 199, 132, 0.1));
+    border-radius: 24upx;
+    border: 2upx solid rgba(76, 175, 80, 0.2);
+}
+
+.recommend-title {
+    font-size: 40upx;
+    font-weight: 700;
+    color: #1B5E20;
+    flex: 1;
+}
+
+.header-decoration {
+    width: 80upx;
+    height: 6upx;
+    background: linear-gradient(90deg, #4CAF50, #81C784);
+    border-radius: 4upx;
+}
+
+/* 推荐网格布局 */
+.recommend-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30upx;
+}
+
+/* 推荐食谱卡片 */
+.recommend-card {
+    background: #ffffff;
+    border-radius: 32upx;
+    overflow: hidden;
+    box-shadow: 0 8upx 32upx rgba(76, 175, 80, 0.08);
+    border: 2upx solid rgba(76, 175, 80, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.recommend-card:active {
+    transform: translateY(-4upx) scale(0.98);
+    box-shadow: 0 16upx 50upx rgba(76, 175, 80, 0.15);
+    border-color: #4CAF50;
+}
+
+/* 食谱封面区域 */
+.card-image-wrapper {
+    position: relative;
+    height: 240upx;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.recommend-card:active .card-image {
+    transform: scale(1.05);
+}
+
+/* 图片覆盖层 */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20upx;
+}
+
+/* 浏览量显示 */
+.view-count {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8upx 16upx;
+    border-radius: 24upx;
+    backdrop-filter: blur(10px);
+}
+
+.count-text {
+    font-size: 22upx;
+    color: #ffffff;
+    margin-left: 8upx;
+    font-weight: 500;
+}
+
+/* 食谱标签 */
+.recipe-badge {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    padding: 8upx 16upx;
+    border-radius: 16upx;
+    box-shadow: 0 4upx 16upx rgba(76, 175, 80, 0.3);
+}
+
+.badge-text {
+    font-size: 20upx;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* 卡片内容区域 */
+.card-content {
+    padding: 30upx 24upx 24upx;
+}
+
+/* 食谱标题 */
+.recipe-title {
+    font-size: 28upx;
+    font-weight: 600;
+    color: #1B5E20;
+    line-height: 1.4;
+    margin-bottom: 24upx;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 76upx;
+}
+
+/* 作者信息区域 */
+.author-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24upx;
+}
+
+.author-avatar {
+    margin-right: 16upx;
+}
+
+.avatar-img {
+    width: 48upx;
+    height: 48upx;
+    border-radius: 24upx;
+    border: 4upx solid #E8F5E9;
+}
+
+.avatar-placeholder {
+    width: 48upx;
+    height: 48upx;
+    border-radius: 24upx;
+    background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2upx solid rgba(76, 175, 80, 0.2);
+}
+
+.author-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-size: 24upx;
+    color: #2E7D32;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.publish-time {
+    font-size: 20upx;
+    color: #81C784;
+    margin-top: 4upx;
+    line-height: 1.2;
+}
+
+/* 底部标签区域 */
+.card-tags {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-tag {
+    font-size: 20upx;
+    color: #4CAF50;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(129, 199, 132, 0.1));
+    padding: 6upx 16upx;
+    border-radius: 20upx;
+    border: 2upx solid rgba(76, 175, 80, 0.2);
+    font-weight: 500;
+}
+
+.like-indicator {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 138, 101, 0.1));
+    padding: 6upx 12upx;
+    border-radius: 20upx;
+    border: 2upx solid rgba(255, 107, 53, 0.2);
+}
+
+.hot-text {
+    font-size: 18upx;
+    color: #FF6B35;
+    margin-left: 6upx;
+    font-weight: 600;
+}
+
+/* 响应式调整 */
+@media (max-width: 800upx) {
+    .recommend-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-image-wrapper {
+        height: 280upx;
+    }
 }
 </style>
