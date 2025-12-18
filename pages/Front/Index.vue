@@ -22,34 +22,55 @@
             <view class="health-overview">
                 <view class="section-title">
                     <text class="title-text">今日健康概览</text>
-                    <text class="more-text">查看更多 ></text>
+                    <text class="more-text" @click="ToHealthRecordList()">查看更多 ></text>
                 </view>
-                <view class="overview-cards">
-                    <view class="overview-card">
-                        <view class="card-icon heart">💗</view>
-                        <text class="card-label">心率</text>
-                        <text class="card-value">72</text>
-                        <text class="card-unit">次/分</text>
-                    </view>
-                    <view class="overview-card">
-                        <view class="card-icon blood">🩸</view>
-                        <text class="card-label">血压</text>
-                        <text class="card-value">120/80</text>
-                        <text class="card-unit">mmHg</text>
-                    </view>
-                    <view class="overview-card">
-                        <view class="card-icon weight">⚖️</view>
-                        <text class="card-label">体重</text>
-                        <text class="card-value">65.5</text>
-                        <text class="card-unit">kg</text>
-                    </view>
-                    <view class="overview-card">
-                        <view class="card-icon step">👟</view>
-                        <text class="card-label">步数</text>
-                        <text class="card-value">8,520</text>
-                        <text class="card-unit">步</text>
-                    </view>
-                </view>
+                <swiper class="overview-swiper" :indicator-dots="healthPages.length > 1" indicator-color="rgba(0, 0, 0, .3)"
+                    indicator-active-color="var(--primary-color)" :autoplay="false" :circular="false">
+                    <swiper-item v-for="(page, pageIndex) in healthPages" :key="pageIndex" class="swiper-page">
+                        <view class="overview-grid">
+                            <!-- 显示当前页的健康数据 -->
+                            <view v-for="record in page" :key="record.HealthIndicatorDto.Id" class="overview-card"
+                                :class="{ 'abnormal': record.IsAbnormity === 'Y' }" @click="ToHealthRecordList()">
+                                <view class="card-icon">
+                                    <image v-if="record.HealthIndicatorDto.Cover" :src="record.HealthIndicatorDto.Cover"
+                                        class="icon-image" mode="aspectFit" />
+                                    <text v-else class="default-icon">📊</text>
+                                </view>
+                                <text class="card-label">{{ record.HealthIndicatorDto.Name }}</text>
+                                <text class="card-value">{{ formatRecordValue(record.RecordValue) }}</text>
+                                <text class="card-unit">{{ getHealthIndicatorUnit(record.HealthIndicatorDto.Name) }}</text>
+                                <!-- 异常状态提示 -->
+                                <view v-if="record.IsAbnormity === 'Y'" class="abnormal-tag">
+                                    <text class="abnormal-text">异常</text>
+                                </view>
+                            </view>
+
+                            <!-- 填充空白卡片，确保4宫格布局 -->
+                            <view v-for="n in (4 - page.length)" :key="'empty-' + pageIndex + '-' + n"
+                                class="overview-card empty-card" @click="ToHealthRecordList()">
+                                <view class="card-icon">
+                                    <text class="default-icon">➕</text>
+                                </view>
+                                <text class="card-label">添加记录</text>
+                                <text class="card-desc">点击记录健康数据</text>
+                            </view>
+                        </view>
+                    </swiper-item>
+
+                    <!-- 没有数据时显示占位页面 -->
+                    <swiper-item v-if="todayRecordList.length === 0" class="swiper-page">
+                        <view class="overview-grid">
+                            <view class="overview-card empty-card" v-for="n in 4" :key="'placeholder-' + n"
+                                @click="ToHealthRecordList()">
+                                <view class="card-icon">
+                                    <text class="default-icon">📊</text>
+                                </view>
+                                <text class="card-label">暂无数据</text>
+                                <text class="card-desc">点击记录健康数据</text>
+                            </view>
+                        </view>
+                    </swiper-item>
+                </swiper>
             </view>
 
             <!-- 快捷功能 -->
@@ -124,15 +145,46 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useCommonStore } from "@/store";
 import { Post } from "@/utils/http";
 import { onHide, onLoad, onShow, onUnload } from "@dcloudio/uni-app";
 
+
+// 获取store
 const commonStore = useCommonStore();
+const Token = computed(() => commonStore.Token)
+const UserInfo = computed(() => commonStore.UserInfo)
+const RoleType = computed(() => commonStore.RoleType)
+const UserId = computed(() => commonStore.UserId)
+
+const todayRecordList = ref([]);
+const TodayRecordListApi = async () => {
+    let {
+        Data
+    } = await Post('/HealthIndicatorRecord/TodayRecordList', {
+        RecordUserId: UserId.value
+    });
+    todayRecordList.value = Data;
+};
+
 
 // 健康资讯数据状态
 const healthArticleList = ref([]);
+
+// 健康数据分页处理
+const healthPages = computed(() => {
+    if (todayRecordList.value.length === 0) return [];
+
+    const pages = [];
+    const pageSize = 4; // 每页4个卡片
+
+    for (let i = 0; i < todayRecordList.value.length; i += pageSize) {
+        pages.push(todayRecordList.value.slice(i, i + pageSize));
+    }
+
+    return pages;
+});
 
 
 const ToDietRecordList = () => {
@@ -158,16 +210,16 @@ const ToHealthArticleList = () => {
     });
 };
 
-const ToRecipeList = () => {
-    uni.navigateTo({
-        url: '/pages/Front/RecipeList'
-    });
-};
-
 // 跳转到健康文章详情
 const ToHealthArticleDetail = (articleId) => {
     uni.navigateTo({
         url: `/pages/Front/HealthArticleDetail?HealthArticleId=${articleId}`
+    });
+};
+
+const ToRecipeList = () => {
+    uni.navigateTo({
+        url: '/pages/Front/RecipeList'
     });
 };
 
@@ -206,6 +258,40 @@ const formatTime = (timeStr) => {
         });
     }
 };
+
+// 格式化健康记录数值显示
+const formatRecordValue = (value) => {
+    if (value === null || value === undefined) return '--';
+    // 如果是整数，直接显示；如果是小数，保留1位小数
+    return Number(value) % 1 === 0 ? value.toString() : Number(value).toFixed(1);
+};
+
+// 根据健康指标名称获取单位
+const getHealthIndicatorUnit = (name) => {
+    const unitMap = {
+        '体温': '℃',
+        '体重': 'kg',
+        '身高': 'cm',
+        '心率': '次/分',
+        '血压': 'mmHg',
+        '空腹血糖': 'mmol/L',
+        '餐后2小时血糖': 'mmol/L',
+        '血糖': 'mmol/L',
+        '胆固醇': 'mmol/L',
+        '血红蛋白': 'g/L',
+        '白细胞': '×10⁹/L',
+        '血小板': '×10⁹/L'
+    };
+
+    // 模糊匹配，包含关键字即可
+    for (const [key, unit] of Object.entries(unitMap)) {
+        if (name && name.includes(key)) {
+            return unit;
+        }
+    }
+
+    return ''; // 默认无单位
+};
 // 获取健康知识列表
 const GetHealthArticleListApi = async () => {
     try {
@@ -236,6 +322,7 @@ onLoad(() => {
 onShow(() => {
     if (commonStore.CheckIsLogin()) {
         GetHealthArticleListApi();
+        TodayRecordListApi();
     }
 });
 
@@ -324,10 +411,23 @@ onUnload(() => {
     color: var(--primary-color);
 }
 
-.overview-cards {
+/* Swiper 容器样式 */
+.overview-swiper {
+    width: 100%;
+    height: 520upx;
+}
+
+.swiper-page {
+    padding: 0 var(--spacing-xs);
+}
+
+/* 4宫格布局 */
+.overview-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: var(--spacing-base);
+    height: 300upx;
 }
 
 .overview-card {
@@ -337,8 +437,17 @@ onUnload(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     box-shadow: var(--box-shadow-sm);
     transition: var(--transition-base);
+    position: relative;
+    cursor: pointer;
+}
+
+/* 异常状态卡片样式 */
+.overview-card.abnormal {
+    border: 2upx solid #ff4757;
+    background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
 }
 
 .overview-card:active {
@@ -347,25 +456,88 @@ onUnload(() => {
 
 .card-icon {
     font-size: 48upx;
-    margin-bottom: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60upx;
+    height: 60upx;
+    flex-shrink: 0;
+}
+
+/* 图标图片样式 */
+.icon-image {
+    width: 48upx;
+    height: 48upx;
+}
+
+/* 默认图标样式 */
+.default-icon {
+    font-size: 48upx;
 }
 
 .card-label {
     font-size: var(--font-size-sm);
     color: var(--text-color-light);
-    margin-bottom: var(--spacing-xs);
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .card-value {
     font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--text-color);
-    margin-bottom: 4upx;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .card-unit {
     font-size: var(--font-size-xs);
     color: var(--text-color-lighter);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* 异常状态标签 */
+.abnormal-tag {
+    position: absolute;
+    top: 8upx;
+    right: 8upx;
+    background: #ff4757;
+    border-radius: 8upx;
+    padding: 2upx 6upx;
+}
+
+.abnormal-text {
+    color: white;
+    font-size: 20upx;
+    font-weight: 500;
+}
+
+/* 空卡片样式 */
+.empty-card {
+    background: white;
+    border: 2upx dashed var(--border-color-light);
+    opacity: 0.8;
+}
+
+.empty-card:hover {
+    opacity: 1;
+    border-color: var(--primary-color);
+}
+
+.empty-card .default-icon {
+    color: var(--text-color-lighter);
+}
+
+.empty-card .card-label {
+    color: var(--text-color-light);
+}
+
+.card-desc {
+    font-size: var(--font-size-xs);
+    color: var(--text-color-lighter);
+    text-align: center;
+    flex-shrink: 0;
 }
 
 /* 快捷功能 */
