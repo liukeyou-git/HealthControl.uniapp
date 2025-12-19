@@ -103,6 +103,10 @@
                         <view class="action-icon recipe">🥗</view>
                         <text class="action-label">健康食谱</text>
                     </view>
+                    <view class="action-item" @click="ToHealthView()">
+                        <view class="action-icon view">📈</view>
+                        <text class="action-label">健康视图</text>
+                    </view>
                 </view>
             </view>
 
@@ -220,6 +224,12 @@ const ToHealthArticleDetail = (articleId) => {
 const ToRecipeList = () => {
     uni.navigateTo({
         url: '/pages/Front/RecipeList'
+    });
+};
+
+const ToHealthView = () => {
+    uni.navigateTo({
+        url: '/pages/Front/HealthView'
     });
 };
 

@@ -84,6 +84,9 @@
     },
     {
       "path":"pages/Front/CollectRecordList"
+    },
+    {
+      "path":"pages/Front/HealthView"
     }
   ],
   "globalStyle": {
