@@ -95,6 +95,14 @@
                         <view class="action-icon reminder">⏰</view>
                         <text class="action-label">健康提醒</text>
                     </view>
+                    <view class="action-item" @click="ToHealthView()">
+                        <view class="action-icon view">📈</view>
+                        <text class="action-label">健康视图</text>
+                    </view>
+                    <view class="action-item" @click="ToAiAnalyse()">
+                        <view class="action-icon ai">🤖</view>
+                        <text class="action-label">AI分析</text>
+                    </view>
                     <view class="action-item" @click="ToHealthArticleList()">
                         <view class="action-icon article">📖</view>
                         <text class="action-label">健康知识</text>
@@ -102,10 +110,6 @@
                     <view class="action-item" @click="ToRecipeList()">
                         <view class="action-icon recipe">🥗</view>
                         <text class="action-label">健康食谱</text>
-                    </view>
-                    <view class="action-item" @click="ToHealthView()">
-                        <view class="action-icon view">📈</view>
-                        <text class="action-label">健康视图</text>
                     </view>
                 </view>
             </view>
@@ -213,6 +217,13 @@ const ToHealthArticleList = () => {
         url: '/pages/Front/HealthArticleList'
     });
 };
+
+const ToAiAnalyse = () => {
+    uni.navigateTo({
+        url: '/pages/Front/AiAnalyse'
+    });
+};
+
 
 // 跳转到健康文章详情
 const ToHealthArticleDetail = (articleId) => {

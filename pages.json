@@ -87,6 +87,9 @@
     },
     {
       "path":"pages/Front/HealthView"
+    },
+    {
+      "path":"pages/Front/AiAnalyse"
     }
   ],
   "globalStyle": {
