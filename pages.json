@@ -90,6 +90,12 @@
     },
     {
       "path":"pages/Front/AiAnalyse"
+    },
+    {
+      "path":"pages/Front/HealthNoticeList"
+    },
+    {
+      "path":"pages/Front/HealthNoticeForm"
     }
   ],
   "globalStyle": {

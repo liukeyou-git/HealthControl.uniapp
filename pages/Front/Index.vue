@@ -92,7 +92,7 @@
                         <text class="action-label">运动记录</text>
                     </view>
                     <view class="action-item">
-                        <view class="action-icon reminder">⏰</view>
+                        <view class="action-icon reminder" @click="ToHealthNoticeList()">⏰</view>
                         <text class="action-label">健康提醒</text>
                     </view>
                     <view class="action-item" @click="ToHealthView()">
@@ -223,6 +223,13 @@ const ToAiAnalyse = () => {
         url: '/pages/Front/AiAnalyse'
     });
 };
+
+const ToHealthNoticeList = () => {
+    uni.navigateTo({
+        url: '/pages/Front/HealthNoticeList'
+    });
+};
+
 
 
 // 跳转到健康文章详情
