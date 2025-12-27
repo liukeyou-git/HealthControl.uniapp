@@ -81,6 +81,7 @@ import { useCommonStore } from "@/store";
 import { Post } from "@/utils/http";
 import { onLoad } from "@dcloudio/uni-app";
 import { ref } from 'vue';
+import { GetLoginCode } from "@/utils/comm";
 
 
 // 响应式数据
@@ -148,23 +149,28 @@ const Reg = () => {
 const otherLogin = async (type) => {
     if (type == 0) {
         // #ifdef H5
-        uni.$comm.ShowToast("H5不支持微信登录")
+        uni.showToast({
+            title: "H5不支持微信登录",
+            icon: "none"
+        })
         return
         // #endif
-        uni.$comm.ShowLoading("正在登录中~")
+        uni.showLoading({
+            title: "正在登录中~"
+        })
         let WxCode = null
 
-        await uni.$comm.GetLoginCode().then(code => {
+        await GetLoginCode().then(code => {
             WxCode = code
         })
 
-        const { Data, Success } = await store.dispatch("Userlogin", {
+        const { Data, Success } = await commonStore.Login({
             WxCode: WxCode,
         })
 
         uni.hideLoading()
         if (Success) {
-            await store.dispatch("UserInfoByToken", {})
+            await commonStore.GetInfo()
             uni.reLaunch({
                 url: "/pages/Front/Index"
             })
@@ -496,4 +502,5 @@ page {
     .app-title {
         font-size: 42rpx;
     }
-}</style>
+}
+</style>

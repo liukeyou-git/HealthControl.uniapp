@@ -1,0 +1,265 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 主内容区域 */
+.content.data-v-d039dd64 {
+  /* 导航栏高度 */
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* 时间过滤器样式 */
+.time-filter-section.data-v-d039dd64 {
+  background-color: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+.time-filter-section .filter-title.data-v-d039dd64 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+.time-filter-section .time-range-container.data-v-d039dd64 {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+.time-filter-section .time-range-container .time-input-group.data-v-d039dd64 {
+  flex: 1;
+}
+.time-filter-section .time-range-container .time-input-group .input-label.data-v-d039dd64 {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+.time-filter-section .time-range-container .time-input-group .time-input.data-v-d039dd64 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  border: 2rpx solid #e9ecef;
+  border-radius: 8rpx;
+  background-color: #f8f9fa;
+}
+.time-filter-section .time-range-container .time-input-group .time-input .time-text.data-v-d039dd64 {
+  font-size: 28rpx;
+  color: #333;
+}
+.time-filter-section .time-range-container .time-separator.data-v-d039dd64 {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 30rpx;
+}
+.time-filter-section .quick-time-options.data-v-d039dd64 {
+  display: flex;
+  gap: 15rpx;
+  margin-bottom: 30rpx;
+}
+.time-filter-section .quick-time-options .quick-option.data-v-d039dd64 {
+  flex: 1;
+  padding: 16rpx 20rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+  background-color: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 8rpx;
+  transition: all 0.2s ease;
+}
+.time-filter-section .quick-time-options .quick-option.active.data-v-d039dd64 {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+.time-filter-section .filter-actions.data-v-d039dd64 {
+  display: flex;
+  gap: 20rpx;
+}
+.time-filter-section .filter-actions .reset-btn.data-v-d039dd64 {
+  flex: 1;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  color: #666;
+  background-color: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 8rpx;
+}
+.time-filter-section .filter-actions .reset-btn.data-v-d039dd64:after {
+  border: none;
+}
+.time-filter-section .filter-actions .search-btn.data-v-d039dd64 {
+  flex: 2;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: 2rpx solid var(--primary-color);
+  border-radius: 8rpx;
+}
+.time-filter-section .filter-actions .search-btn.data-v-d039dd64:after {
+  border: none;
+}
+
+/* 指标类型选择区域 */
+.indicator-types-section.data-v-d039dd64 {
+  background-color: #fff;
+  padding: 20rpx 0;
+  margin-bottom: 20rpx;
+}
+.indicator-types-section .section-title.data-v-d039dd64 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  padding: 0 30rpx 20rpx;
+}
+
+/* 横向滚动容器 */
+.types-scroll.data-v-d039dd64 {
+  white-space: nowrap;
+}
+.types-container.data-v-d039dd64 {
+  display: flex;
+  padding: 0 30rpx;
+  gap: 20rpx;
+}
+
+/* 类型卡片样式 */
+.type-card.data-v-d039dd64 {
+  position: relative;
+  min-width: 160rpx;
+  height: 80rpx;
+  background-color: #f8f9fa;
+  border: 2rpx solid #e9ecef;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.type-card.active.data-v-d039dd64 {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.type-card .card-content.data-v-d039dd64 {
+  text-align: center;
+}
+.type-card .card-content .type-name.data-v-d039dd64 {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #495057;
+}
+.type-card.active .card-content .type-name.data-v-d039dd64 {
+  color: #fff;
+}
+.type-card .selected-indicator.data-v-d039dd64 {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  width: 24rpx;
+  height: 24rpx;
+  background-color: #28a745;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 图表区域样式 */
+.chart-section.data-v-d039dd64 {
+  background-color: #fff;
+  margin: 0 0 20rpx;
+  padding: 30rpx;
+}
+.chart-section .section-title.data-v-d039dd64 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+.chart-section .chart-container.data-v-d039dd64 {
+  width: 100%;
+  height: 600rpx;
+  border-radius: 12rpx;
+  overflow: visible;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+.chart-section .chart-legend.data-v-d039dd64 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20rpx;
+  margin-top: 30rpx;
+  padding: 20rpx;
+  background-color: #f8f9fa;
+  border-radius: 12rpx;
+}
+.chart-section .chart-legend .legend-item.data-v-d039dd64 {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.chart-section .chart-legend .legend-item .legend-color.data-v-d039dd64 {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+}
+.chart-section .chart-legend .legend-item .legend-text.data-v-d039dd64 {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 空状态样式 */
+.empty-state.data-v-d039dd64 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 30rpx;
+}
+.empty-state .empty-text.data-v-d039dd64 {
+  font-size: 28rpx;
+  color: #999;
+  margin-top: 20rpx;
+}
+
+/* 响应式适配 */
+@media (max-width: 750rpx) {
+.type-card.data-v-d039dd64 {
+    min-width: 140rpx;
+    height: 70rpx;
+    padding: 16rpx;
+}
+.type-card .card-content .type-name.data-v-d039dd64 {
+    font-size: 26rpx;
+}
+}

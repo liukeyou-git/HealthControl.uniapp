@@ -3,6 +3,7 @@ const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
 const store_index = require("../../store/index.js");
 const utils_http = require("../../utils/http.js");
+const utils_comm = require("../../utils/comm.js");
 if (!Array) {
   const _easycom_uni_data_checkbox2 = common_vendor.resolveComponent("uni-data-checkbox");
   _easycom_uni_data_checkbox2();
@@ -27,7 +28,7 @@ const _sfc_main = {
         text: item.Name,
         value: item.Code
       }));
-      common_vendor.index.__f__("log", "at pages/Front/Login.vue:103", RoleTypeList.value);
+      common_vendor.index.__f__("log", "at pages/Front/Login.vue:104", RoleTypeList.value);
     };
     const Login = async () => {
       if (!formData.value.UserName) {
@@ -64,17 +65,19 @@ const _sfc_main = {
     };
     const otherLogin = async (type) => {
       if (type == 0) {
-        common_vendor.index.$comm.ShowLoading("正在登录中~");
+        common_vendor.index.showLoading({
+          title: "正在登录中~"
+        });
         let WxCode = null;
-        await common_vendor.index.$comm.GetLoginCode().then((code) => {
+        await utils_comm.GetLoginCode().then((code) => {
           WxCode = code;
         });
-        const { Data, Success } = await store.dispatch("Userlogin", {
+        const { Data, Success } = await commonStore.Login({
           WxCode
         });
         common_vendor.index.hideLoading();
         if (Success) {
-          await store.dispatch("UserInfoByToken", {});
+          await commonStore.GetInfo();
           common_vendor.index.reLaunch({
             url: "/pages/Front/Index"
           });

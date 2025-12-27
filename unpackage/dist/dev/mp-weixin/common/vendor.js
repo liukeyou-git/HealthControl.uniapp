@@ -5530,12 +5530,41 @@ function vFor(source, renderItem) {
   }
   return ret;
 }
+function renderSlot(name, props = {}, key) {
+  const instance = getCurrentInstance();
+  const { parent, isMounted, ctx: { $scope } } = instance;
+  const vueIds = ($scope.properties || $scope.props).uI;
+  if (!vueIds) {
+    return;
+  }
+  if (!parent && !isMounted) {
+    onMounted(() => {
+      renderSlot(name, props, key);
+    }, instance);
+    return;
+  }
+  const invoker = findScopedSlotInvoker(vueIds, instance);
+  if (invoker) {
+    invoker(name, props, key);
+  }
+}
+function findScopedSlotInvoker(vueId, instance) {
+  let parent = instance.parent;
+  while (parent) {
+    const invokers = parent.$ssi;
+    if (invokers && invokers[vueId]) {
+      return invokers[vueId];
+    }
+    parent = parent.parent;
+  }
+}
 function setRef(ref2, id, opts = {}) {
   const { $templateRefs } = getCurrentInstance();
   $templateRefs.push({ i: id, r: ref2, k: opts.k, f: opts.f });
 }
 const o$1 = (value, key) => vOn(value, key);
 const f$1 = (source, renderItem) => vFor(source, renderItem);
+const r$1 = (name, props, key) => renderSlot(name, props, key);
 const s$1 = (value) => stringifyStyle(value);
 const e$1 = (target, ...sources) => extend(target, ...sources);
 const n$1 = (value) => normalizeClass(value);
@@ -7365,9 +7394,9 @@ function isConsoleWritable() {
   return isWritable;
 }
 function initRuntimeSocketService() {
-  const hosts = "172.19.48.1,192.168.248.1,192.168.9.1,192.168.162.140,127.0.0.1";
+  const hosts = "172.19.48.1,192.168.248.1,192.168.9.1,192.168.59.140,127.0.0.1";
   const port = "8090";
-  const id = "mp-weixin_G32V4p";
+  const id = "mp-weixin_5NpgPE";
   const lazy = typeof swan !== "undefined";
   let restoreError = lazy ? () => {
   } : initOnError();
@@ -9114,6 +9143,11 @@ const onUnload = /* @__PURE__ */ createLifeCycleHook(
   2
   /* HookFlags.PAGE */
 );
+const onPageScroll = /* @__PURE__ */ createLifeCycleHook(
+  ON_PAGE_SCROLL,
+  2
+  /* HookFlags.PAGE */
+);
 const pages = [
   {
     path: "pages/Front/Index"
@@ -9162,6 +9196,54 @@ const pages = [
   },
   {
     path: "pages/Front/FoodList"
+  },
+  {
+    path: "pages/Front/SportRecordList"
+  },
+  {
+    path: "pages/Front/SportList"
+  },
+  {
+    path: "pages/Front/HealthArticleList"
+  },
+  {
+    path: "pages/Front/HealthArticleDetail"
+  },
+  {
+    path: "pages/Front/MyHealthArticleList"
+  },
+  {
+    path: "pages/Front/HealthArticleForm"
+  },
+  {
+    path: "pages/Front/RecipeList"
+  },
+  {
+    path: "pages/Front/RecipeDetail"
+  },
+  {
+    path: "pages/Front/MyRecipeList"
+  },
+  {
+    path: "pages/Front/RecipeForm"
+  },
+  {
+    path: "pages/Front/LikeRecordList"
+  },
+  {
+    path: "pages/Front/CollectRecordList"
+  },
+  {
+    path: "pages/Front/HealthView"
+  },
+  {
+    path: "pages/Front/AiAnalyse"
+  },
+  {
+    path: "pages/Front/HealthNoticeList"
+  },
+  {
+    path: "pages/Front/HealthNoticeForm"
   }
 ];
 const globalStyle = {
@@ -12032,6 +12114,7 @@ exports.createSSRApp = createSSRApp;
 exports.defineStore = defineStore;
 exports.e = e$1;
 exports.f = f$1;
+exports.getCurrentInstance = getCurrentInstance;
 exports.index = index;
 exports.initVueI18n = initVueI18n;
 exports.n = n$1;
@@ -12041,10 +12124,12 @@ exports.onHide = onHide;
 exports.onLaunch = onLaunch;
 exports.onLoad = onLoad;
 exports.onMounted = onMounted;
+exports.onPageScroll = onPageScroll;
 exports.onReady = onReady;
 exports.onShow = onShow;
 exports.onUnload = onUnload;
 exports.p = p$1;
+exports.r = r$1;
 exports.reactive = reactive;
 exports.ref = ref;
 exports.resolveComponent = resolveComponent;

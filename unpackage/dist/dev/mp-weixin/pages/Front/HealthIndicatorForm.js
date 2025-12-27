@@ -304,34 +304,37 @@ const _sfc_main = {
           primaryColor: "var(--primary-color)",
           modelValue: formData.Threshold
         }),
-        v: common_vendor.p({
+        v: common_vendor.t("范围格式：3.4-17.1"),
+        w: common_vendor.t("大于格式：>1.04"),
+        x: common_vendor.t("小于格式：<3.4"),
+        y: common_vendor.p({
           label: "阈值",
           required: true,
           name: "Threshold"
         }),
-        w: common_vendor.o(($event) => formData.Content = $event),
-        x: common_vendor.p({
+        z: common_vendor.o(($event) => formData.Content = $event),
+        A: common_vendor.p({
           type: "textarea",
           placeholder: "请输入描述内容",
           primaryColor: "var(--primary-color)",
           modelValue: formData.Content
         }),
-        y: common_vendor.p({
+        B: common_vendor.p({
           label: "描述内容",
           required: true,
           name: "Content"
         }),
-        z: common_vendor.sr(editModalForm, "8a16d654-2,8a16d654-1", {
+        C: common_vendor.sr(editModalForm, "8a16d654-2,8a16d654-1", {
           "k": "editModalForm"
         }),
-        A: common_vendor.p({
+        D: common_vendor.p({
           model: formData,
           rules: editModalFormRules,
           ["label-width"]: "100",
           ["label-position"]: "top"
         }),
-        B: common_vendor.o(createOrEditAsync),
-        C: common_vendor.p({
+        E: common_vendor.o(createOrEditAsync),
+        F: common_vendor.p({
           title: "请填写健康指标信息"
         })
       });

@@ -87,10 +87,23 @@
   font-size: var(--font-size-sm);
   color: var(--primary-color);
 }
-.overview-cards.data-v-b146bd57 {
+
+/* Swiper 容器样式 */
+.overview-swiper.data-v-b146bd57 {
+  width: 100%;
+  height: 520rpx;
+}
+.swiper-page.data-v-b146bd57 {
+  padding: 0 var(--spacing-xs);
+}
+
+/* 4宫格布局 */
+.overview-grid.data-v-b146bd57 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: var(--spacing-base);
+  height: 300rpx;
 }
 .overview-card.data-v-b146bd57 {
   background: white;
@@ -99,30 +112,97 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   box-shadow: var(--box-shadow-sm);
   transition: var(--transition-base);
+  position: relative;
+  cursor: pointer;
+}
+
+/* 异常状态卡片样式 */
+.overview-card.abnormal.data-v-b146bd57 {
+  border: 2rpx solid #ff4757;
+  background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
 }
 .overview-card.data-v-b146bd57:active {
   transform: scale(0.98);
 }
 .card-icon.data-v-b146bd57 {
   font-size: 48rpx;
-  margin-bottom: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60rpx;
+  height: 60rpx;
+  flex-shrink: 0;
+}
+
+/* 图标图片样式 */
+.icon-image.data-v-b146bd57 {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+/* 默认图标样式 */
+.default-icon.data-v-b146bd57 {
+  font-size: 48rpx;
 }
 .card-label.data-v-b146bd57 {
   font-size: var(--font-size-sm);
   color: var(--text-color-light);
-  margin-bottom: var(--spacing-xs);
+  text-align: center;
+  flex-shrink: 0;
 }
 .card-value.data-v-b146bd57 {
   font-size: var(--font-size-lg);
   font-weight: 600;
   color: var(--text-color);
-  margin-bottom: 4rpx;
+  text-align: center;
+  flex-shrink: 0;
 }
 .card-unit.data-v-b146bd57 {
   font-size: var(--font-size-xs);
   color: var(--text-color-lighter);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* 异常状态标签 */
+.abnormal-tag.data-v-b146bd57 {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  background: #ff4757;
+  border-radius: 8rpx;
+  padding: 2rpx 6rpx;
+}
+.abnormal-text.data-v-b146bd57 {
+  color: white;
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+/* 空卡片样式 */
+.empty-card.data-v-b146bd57 {
+  background: white;
+  border: 2rpx dashed var(--border-color-light);
+  opacity: 0.8;
+}
+.empty-card.data-v-b146bd57:hover {
+  opacity: 1;
+  border-color: var(--primary-color);
+}
+.empty-card .default-icon.data-v-b146bd57 {
+  color: var(--text-color-lighter);
+}
+.empty-card .card-label.data-v-b146bd57 {
+  color: var(--text-color-light);
+}
+.card-desc.data-v-b146bd57 {
+  font-size: var(--font-size-xs);
+  color: var(--text-color-lighter);
+  text-align: center;
+  flex-shrink: 0;
 }
 
 /* 快捷功能 */
@@ -203,8 +283,31 @@
   color: var(--text-color-light);
   margin-bottom: var(--spacing-xs);
   line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 文章元信息容器 */
+.news-meta.data-v-b146bd57 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 .news-time.data-v-b146bd57 {
+  font-size: var(--font-size-xs);
+  color: var(--text-color-lighter);
+}
+.news-category.data-v-b146bd57 {
+  font-size: var(--font-size-xs);
+  color: var(--primary-color);
+  background: var(--primary-color-light);
+  padding: 2rpx 8rpx;
+  border-radius: 8rpx;
+}
+.news-views.data-v-b146bd57 {
   font-size: var(--font-size-xs);
   color: var(--text-color-lighter);
 }
@@ -219,4 +322,21 @@
 }
 .placeholder-icon.data-v-b146bd57 {
   font-size: 40rpx;
+}
+
+/* 封面图片样式 */
+.cover-image.data-v-b146bd57 {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius-sm);
+}
+
+/* 无数据状态样式 */
+.no-data.data-v-b146bd57 {
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+.no-data-text.data-v-b146bd57 {
+  font-size: var(--font-size-sm);
+  color: var(--text-color-lighter);
 }

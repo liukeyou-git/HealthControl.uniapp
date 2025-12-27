@@ -40,6 +40,24 @@ function FullConvertUrlArray(value = "", cutting = ",") {
     };
   });
 }
+function GetObjectValue(obj, name) {
+  if (!name) {
+    return void 0;
+  }
+  if (!obj) {
+    return void 0;
+  }
+  if (name.indexOf(".") != -1) {
+    var array = name.split(".");
+    var value = obj;
+    array.forEach((item) => {
+      value = value[`${item}`];
+    });
+    return value;
+  } else {
+    return obj[`${name}`];
+  }
+}
 function GetFormatFullDate(date) {
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
@@ -54,6 +72,21 @@ function GetFormatFullDate(date) {
   seconds = seconds < 10 ? "0" + seconds : seconds;
   let currentDate = year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
   return currentDate;
+}
+function ChooseImageAsync(count = 1) {
+  return new Promise((resolve, reject) => {
+    common_vendor.index.chooseImage({
+      count,
+      //默认9
+      sizeType: ["original", "compressed"],
+      //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ["album", "camera"],
+      //从相册选择
+      success: (res) => {
+        resolve(res);
+      }
+    });
+  });
 }
 function GetLoginCode(count = 1) {
   return new Promise((resolve, reject) => {
@@ -73,7 +106,9 @@ function GetLoginCode(count = 1) {
     });
   });
 }
+exports.ChooseImageAsync = ChooseImageAsync;
 exports.FullConvertUrlArray = FullConvertUrlArray;
 exports.GetFormatFullDate = GetFormatFullDate;
 exports.GetLoginCode = GetLoginCode;
+exports.GetObjectValue = GetObjectValue;
 //# sourceMappingURL=../../.sourcemap/mp-weixin/utils/comm.js.map

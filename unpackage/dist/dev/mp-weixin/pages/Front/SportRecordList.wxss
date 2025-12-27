@@ -1,0 +1,224 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 内容区域样式 */
+.content.data-v-0f544f89 {
+  padding-bottom: 120rpx;
+  /* 为浮动按钮留出空间 */
+  min-height: calc(100vh - 88rpx);
+  background-color: #f8f9fa;
+}
+
+/* 运动统计卡片样式 */
+.statistics-section.data-v-0f544f89 {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+.statistics-title.data-v-0f544f89 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.statistics-title uni-icons.data-v-0f544f89 {
+  margin-right: 10rpx;
+}
+.statistics-title text.data-v-0f544f89 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2c3e50;
+}
+.statistics-cards.data-v-0f544f89 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 20rpx;
+}
+.stat-card.data-v-0f544f89 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  /* 调整卡片宽度 */
+  margin-bottom: 20rpx;
+}
+.stat-value.data-v-0f544f89 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #e74c3c;
+  /* 红色 */
+  margin-bottom: 8rpx;
+}
+.stat-label.data-v-0f544f89 {
+  font-size: 24rpx;
+  color: #7f8c8d;
+  margin-bottom: 8rpx;
+}
+.stat-unit.data-v-0f544f89 {
+  font-size: 24rpx;
+  color: #7f8c8d;
+}
+
+/* 运动记录列表样式 */
+.record-list.data-v-0f544f89 {
+  padding: 20rpx;
+}
+
+/* 单个记录项样式 */
+.record-item.data-v-0f544f89 {
+  background-color: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+.record-item.data-v-0f544f89:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 记录头部样式 */
+.record-header.data-v-0f544f89 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.sport-icon.data-v-0f544f89 {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 12rpx;
+  margin-right: 16rpx;
+}
+.sport-info.data-v-0f544f89 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.sport-name.data-v-0f544f89 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 4rpx;
+}
+.record-time.data-v-0f544f89 {
+  font-size: 24rpx;
+  color: #95a5a6;
+}
+.delete-btn.data-v-0f544f89 {
+  padding: 8rpx;
+  border-radius: 8rpx;
+  background-color: #fee;
+  transition: all 0.3s ease;
+}
+.delete-btn.data-v-0f544f89:active {
+  background-color: #fdd;
+  transform: scale(0.95);
+}
+
+/* 运动数据样式 */
+.record-data.data-v-0f544f89 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+  padding: 16rpx;
+  background-color: #f8f9fa;
+  border-radius: 12rpx;
+}
+.data-item.data-v-0f544f89 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.data-label.data-v-0f544f89 {
+  font-size: 24rpx;
+  color: #7f8c8d;
+  margin-bottom: 4rpx;
+}
+.data-value.data-v-0f544f89 {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2c3e50;
+}
+.data-value.calories.data-v-0f544f89 {
+  color: #e74c3c;
+}
+
+/* 运动描述样式 */
+.sport-description.data-v-0f544f89 {
+  padding: 12rpx 0;
+  border-top: 1rpx solid #ecf0f1;
+}
+.sport-description text.data-v-0f544f89 {
+  font-size: 26rpx;
+  color: #7f8c8d;
+  line-height: 1.5;
+}
+
+/* 空状态样式 */
+.empty-state.data-v-0f544f89 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 40rpx;
+  text-align: center;
+}
+.empty-text.data-v-0f544f89 {
+  font-size: 32rpx;
+  color: #95a5a6;
+  margin: 24rpx 0 12rpx 0;
+  font-weight: 500;
+}
+.empty-tip.data-v-0f544f89 {
+  font-size: 26rpx;
+  color: #bdc3c7;
+}
+
+/* 浮动添加按钮样式 */
+.floating-add-btn.data-v-0f544f89 {
+  position: fixed;
+  bottom: 60rpx;
+  right: 60rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background-color: var(--primary-color, #007aff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 122, 255, 0.3);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+/* 按钮悬停效果 */
+.floating-add-btn.data-v-0f544f89:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 8rpx rgba(0, 122, 255, 0.4);
+}

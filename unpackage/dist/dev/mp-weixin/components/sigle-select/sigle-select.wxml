@@ -1,0 +1,1 @@
+<uni-data-select wx:if="{{c}}" class="data-v-3df986b3" bindchange="{{a}}" u-i="3df986b3-0" bind:__l="__l" bindupdateModelValue="{{b}}" u-p="{{c}}"></uni-data-select>

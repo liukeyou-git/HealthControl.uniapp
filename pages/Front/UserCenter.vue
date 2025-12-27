@@ -19,7 +19,7 @@
 							<view class="status-dot unbound-dot"></view>
 							<text class="status-text">未绑定微信</text>
 						</view>
-					</view>                    
+					</view>
 				</view>
 			</view>
 			<view class="arrow-icon"></view>
@@ -44,36 +44,36 @@
 							<text class="menu-text">密码修改</text>
 						</view>
 					</uni-grid-item>
-					<!-- <uni-grid-item>
-						<view class="menu-item" @click="navigateTo('/pages/Front/WeChatBind')">
-							<image :src="WeChatBindIcon" class="menu-icon"></image>
-							<text class="menu-text">微信绑定</text>
-						</view>
-					</uni-grid-item> -->
 					<uni-grid-item>
 						<view class="menu-item" @click="navigateTo('/pages/Front/MyHealthArticleList')">
-							<image :src="HealthArticleIcon" class="menu-icon"></image>
+							<image :src="MyHealthArticleIcon" class="menu-icon"></image>
 							<text class="menu-text">我的健康知识</text>
 						</view>
 					</uni-grid-item>
 					<uni-grid-item>
 						<view class="menu-item" @click="navigateTo('/pages/Front/MyRecipeList')">
-							<image :src="RecipeIcon" class="menu-icon"></image>
+							<image :src="MyRecipeIcon" class="menu-icon"></image>
 							<text class="menu-text">我的食谱</text>
 						</view>
 					</uni-grid-item>
 					<uni-grid-item>
 						<view class="menu-item" @click="navigateTo('/pages/Front/CollectRecordList')">
-							<image :src="CollectIcon" class="menu-icon"></image>
+							<image :src="CollectRecordListIcon" class="menu-icon"></image>
 							<text class="menu-text">收藏记录</text>
 						</view>
 					</uni-grid-item>
 					<uni-grid-item>
 						<view class="menu-item" @click="navigateTo('/pages/Front/LikeRecordList')">
-							<image :src="LikeIcon" class="menu-icon"></image>
+							<image :src="LikeRecordListIcon" class="menu-icon"></image>
 							<text class="menu-text">点赞记录</text>
 						</view>
-					</uni-grid-item>                    
+					</uni-grid-item>
+					<uni-grid-item>
+						<view class="menu-item" @click="navigateTo('/pages/Front/WeChatBind')">
+							<image :src="WeChatBindIcon" class="menu-icon"></image>
+							<text class="menu-text">微信绑定</text>
+						</view>
+					</uni-grid-item>
 				</uni-grid>
 			</uni-card>
 		</view>
@@ -81,19 +81,19 @@
 		<!-- 退出按钮 -->
 		<button class="logout-button" @click="logout">退出</button>
 
-		<footer-bar/>
+		<footer-bar />
 	</view>
 </template>
 
 <script setup>
 import UserInfoIcon from '@/assets/个人信息.png';
 import PasswordEditIcon from '@/assets/密码修改.png';
+import MyHealthArticleIcon from '@/assets/健康知识.png';
 import userInfoIcon from '@/assets/默认头像.png';
-import HealthArticleIcon from '@/assets/健康知识.png';
-import RecipeIcon from '@/assets/我的食谱.png';
+import MyRecipeIcon from '@/assets/我的食谱.png';
+import CollectRecordListIcon from '@/assets/收藏记录.png';
+import LikeRecordListIcon from '@/assets/点赞记录.png';
 import WeChatBindIcon from '@/assets/wx.png';
-import CollectIcon from '@/assets/收藏记录.png';
-import LikeIcon from '@/assets/点赞记录.png';
 import { useCommonStore } from '@/store';
 import { computed, ref } from 'vue';
 
@@ -179,6 +179,57 @@ const navigateTo = (url) => {
 	display: inline-block;
 }
 
+/* 微信绑定状态样式 */
+.user-openid-container {
+	margin-top: 8rpx;
+}
+
+.user-openid {
+	display: flex;
+	align-items: center;
+	padding: 4rpx 12rpx;
+	border-radius: 16rpx;
+	display: inline-flex;
+}
+
+.user-openid.bound {
+	background-color: #e8f5e8;
+	border: 1rpx solid #52c41a;
+}
+
+.user-openid.unbound {
+	background-color: #fff2f0;
+	border: 1rpx solid #ff7875;
+}
+
+.status-dot {
+	width: 12rpx;
+	height: 12rpx;
+	border-radius: 50%;
+	margin-right: 8rpx;
+}
+
+.bound-dot {
+	background-color: #52c41a;
+}
+
+.unbound-dot {
+	background-color: #ff7875;
+}
+
+.status-text {
+	font-size: 24rpx;
+	font-weight: 500;
+}
+
+.bound .status-text {
+	color: #389e0d;
+}
+
+.unbound .status-text {
+	color: #cf1322;
+}
+
 .arrow-icon {
 	width: 16rpx;
 	height: 16rpx;
@@ -233,56 +284,4 @@ const navigateTo = (url) => {
 .bottom-spacer {
 	height: 200rpx;
 }
-
-/* 微信绑定状态样式 */
-.user-openid-container {
-	margin-top: 8rpx;
-}
-
-.user-openid {
-	display: flex;
-	align-items: center;
-	padding: 4rpx 12rpx;
-	border-radius: 16rpx;
-	display: inline-flex;
-}
-
-.user-openid.bound {
-	background-color: #e8f5e8;
-	border: 1rpx solid #52c41a;
-}
-
-.user-openid.unbound {
-	background-color: #fff2f0;
-	border: 1rpx solid #ff7875;
-}
-
-.status-dot {
-	width: 12rpx;
-	height: 12rpx;
-	border-radius: 50%;
-	margin-right: 8rpx;
-}
-
-.bound-dot {
-	background-color: #52c41a;
-}
-
-.unbound-dot {
-	background-color: #ff7875;
-}
-
-.status-text {
-	font-size: 24rpx;
-	font-weight: 500;
-}
-
-.bound .status-text {
-	color: #389e0d;
-}
-
-.unbound .status-text {
-	color: #cf1322;
-}
-
 </style>

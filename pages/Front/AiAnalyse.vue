@@ -34,7 +34,7 @@
         <!-- 分析结果展示 -->
         <view v-else-if="analysisResult" class="result-container">
             <!-- 健康总评 -->
-            <uni-card id="overview" class="health-overview section" :isShadow="false" margin="20upx 0">
+            <view id="overview" class="health-overview section">
                 <view class="card-header">
                     <text class="card-title">🎯 健康总评</text>
                 </view>
@@ -49,10 +49,10 @@
                     </view>
                 </view>
                 <view class="summary-text">{{ analysisResult.Summary }}</view>
-            </uni-card>
+            </view>
 
             <!-- 健康风险评估 -->
-            <uni-card id="risks" class="risk-section section" :isShadow="false" margin="20upx 0">
+            <view id="risks" class="risk-section section">
                 <view class="card-header">
                     <text class="card-title">⚠️ 健康风险评估</text>
                 </view>
@@ -72,10 +72,10 @@
                         </view>
                     </view>
                 </view>
-            </uni-card>
+            </view>
 
             <!-- 营养分析 -->
-            <uni-card id="nutrition" class="nutrition-section section" :isShadow="false" margin="20upx 0">
+            <view id="nutrition" class="nutrition-section section">
                 <view class="card-header">
                     <text class="card-title">🥗 营养分析</text>
                 </view>
@@ -114,10 +114,10 @@
                         <text class="recommendation-text">{{ index + 1 }}. {{ recommendation }}</text>
                     </view>
                 </view>
-            </uni-card>
+            </view>
 
             <!-- 运动分析 -->
-            <uni-card id="sport" class="sport-section section" :isShadow="false" margin="20upx 0">
+            <view id="sport" class="sport-section section">
                 <view class="card-header">
                     <text class="card-title">🏃‍♂️ 运动分析</text>
                 </view>
@@ -152,10 +152,10 @@
                         <text class="recommendation-text">{{ index + 1 }}. {{ recommendation }}</text>
                     </view>
                 </view>
-            </uni-card>
+            </view>
 
             <!-- 指标分析 -->
-            <uni-card id="indicators" class="indicators-section section" :isShadow="false" margin="20upx 0">
+            <view id="indicators" class="indicators-section section">
                 <view class="card-header">
                     <text class="card-title">📊 指标分析</text>
                 </view>
@@ -190,10 +190,10 @@
                         </view>
                     </view>
                 </view>
-            </uni-card>
+            </view>
 
             <!-- 健康建议 -->
-            <uni-card id="recommendations" class="recommendations-section section" :isShadow="false" margin="20upx 0">
+            <view id="recommendations" class="recommendations-section section">
                 <view class="card-header">
                     <text class="card-title">💡 健康建议</text>
                 </view>
@@ -220,7 +220,7 @@
                         </view>
                     </view>
                 </view>
-            </uni-card>
+            </view>
 
             <!-- 分析时间 -->
             <view class="analysis-time">
@@ -455,7 +455,13 @@ const scrollToSection = async (sectionId) => {
     query.exec((res) => {
         if (res[0]) {
             // 计算目标滚动位置，减去固定tab的高度偏移
-            const targetScrollTop = res[0].top + res[1].scrollTop - 100; // 200upx 为tab导航高度 + 缓冲
+            let targetScrollTop;
+            // #ifdef MP
+            targetScrollTop = res[0].top + res[1].scrollTop - 180; // 小程序环境偏移量
+            // #endif
+            // #ifndef MP
+            targetScrollTop = res[0].top + res[1].scrollTop - 100; // 非小程序环境偏移量
+            // #endif
 
             uni.pageScrollTo({
                 scrollTop: Math.max(0, targetScrollTop), // 确保不会滚动到负值
@@ -505,7 +511,13 @@ const calculateSectionPositions = async () => {
 const updateActiveTab = (scrollTop) => {
     if (!analysisResult.value || sectionPositions.value.length === 0) return;
 
-    const offsetTop = 200; // tab导航高度 + 缓冲
+    let offsetTop;
+    // #ifdef MP
+    offsetTop = 280; // 小程序环境：调整tab导航高度 + 缓冲
+    // #endif
+    // #ifndef MP
+    offsetTop = 200; // 非小程序环境：原始tab导航高度 + 缓冲
+    // #endif
     const adjustedScrollTop = scrollTop + offsetTop;
 
     // 从后往前遍历，找到第一个top小于等于当前滚动位置的section
@@ -532,7 +544,12 @@ const updateActiveTab = (scrollTop) => {
 /* 固定Tab导航样式 */
 .fixed-tabs {
     position: fixed;
-    top: 88upx; // 导航栏下方
+    /* #ifdef MP */
+    top: 180upx; // 小程序环境：进一步增加top值，确保完全显示
+    /* #endif */
+    /* #ifndef MP */
+    top: 88upx; // 非小程序环境：使用原始位置
+    /* #endif */
     left: 0;
     right: 0;
     z-index: 100;
@@ -586,11 +603,21 @@ const updateActiveTab = (scrollTop) => {
 
 /* 为内容区域添加顶部间距，避免被fixed tab遮挡 */
 .result-container {
-    padding-top: 120upx; // Tab导航高度 + 额外间距
+    /* #ifdef MP */
+    padding-top: 220upx; // 小程序环境：相应增加内容区域的顶部间距
+    /* #endif */
+    /* #ifndef MP */
+    padding-top: 120upx; // 非小程序环境：使用原始间距
+    /* #endif */
 }
 
 .section {
-    scroll-margin-top: 200upx; // 滚动定位时的偏移量，确保标题不被tab遮挡
+    /* #ifdef MP */
+    scroll-margin-top: 280upx; // 小程序环境：相应增加滚动定位时的偏移量
+    /* #endif */
+    /* #ifndef MP */
+    scroll-margin-top: 200upx; // 非小程序环境：使用原始偏移量
+    /* #endif */
     margin-bottom: 30upx; // 增加section之间的间距，便于滚动定位
 }
 
@@ -668,6 +695,7 @@ const updateActiveTab = (scrollTop) => {
     border-radius: 16upx;
     padding: 32upx;
     border: 1upx solid #eee;
+    margin: 20upx 0;
 }
 
 .health-score-section {
@@ -788,6 +816,15 @@ const updateActiveTab = (scrollTop) => {
     margin-left: 8upx;
 }
 
+/* 风险评估样式 */
+.risk-section {
+    background: #fff;
+    border-radius: 16upx;
+    padding: 24upx;
+    border: 1upx solid #eee;
+    margin: 20upx 0;
+}
+
 /* 营养分析和运动分析样式 */
 .nutrition-section,
 .sport-section {
@@ -795,6 +832,7 @@ const updateActiveTab = (scrollTop) => {
     border-radius: 16upx;
     padding: 24upx;
     border: 1upx solid #eee;
+    margin: 20upx 0;
 }
 
 .nutrition-score,
@@ -889,6 +927,7 @@ const updateActiveTab = (scrollTop) => {
     border-radius: 16upx;
     padding: 24upx;
     border: 1upx solid #eee;
+    margin: 20upx 0;
 }
 
 .indicators-list {
@@ -974,6 +1013,7 @@ const updateActiveTab = (scrollTop) => {
     border-radius: 16upx;
     padding: 24upx;
     border: 1upx solid #eee;
+    margin: 20upx 0;
 }
 
 .recommendations-list {

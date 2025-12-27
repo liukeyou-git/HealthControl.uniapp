@@ -48,9 +48,9 @@
                             primaryColor="var(--primary-color)" />
                         <view class="threshold-tips">
                             <text class="tips-text">支持格式：</text>
-                            <text class="tips-item">范围格式：3.4-17.1</text>
-                            <text class="tips-item">大于格式：>1.04</text>
-                            <text class="tips-item">小于格式：&lt;3.4</text>
+                            <text class="tips-item">{{ '范围格式：3.4-17.1' }}</text>
+                            <text class="tips-item">{{ '大于格式：>1.04' }}</text>
+                            <text class="tips-item">{{ '小于格式：<3.4' }}</text>
                         </view>
                     </uni-forms-item>
                     <uni-forms-item label="描述内容" required name="Content">

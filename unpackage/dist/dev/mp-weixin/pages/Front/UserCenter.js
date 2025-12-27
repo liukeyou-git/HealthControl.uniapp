@@ -73,21 +73,29 @@ const _sfc_main = {
         i: common_vendor.o(($event) => navigateTo("/pages/Front/UserInfoEdit")),
         j: common_vendor.unref(common_assets.PasswordEditIcon),
         k: common_vendor.o(($event) => navigateTo("/pages/Front/PasswordEdit")),
-        l: common_vendor.unref(common_assets.WeChatBindIcon),
-        m: common_vendor.o(($event) => navigateTo("/pages/Front/WeChatBind")),
-        n: common_vendor.p({
+        l: common_vendor.unref(common_assets.MyHealthArticleIcon),
+        m: common_vendor.o(($event) => navigateTo("/pages/Front/MyHealthArticleList")),
+        n: common_vendor.unref(common_assets.MyRecipeIcon),
+        o: common_vendor.o(($event) => navigateTo("/pages/Front/MyRecipeList")),
+        p: common_vendor.unref(common_assets.CollectRecordListIcon),
+        q: common_vendor.o(($event) => navigateTo("/pages/Front/CollectRecordList")),
+        r: common_vendor.unref(common_assets.LikeRecordListIcon),
+        s: common_vendor.o(($event) => navigateTo("/pages/Front/LikeRecordList")),
+        t: common_vendor.unref(common_assets.WeChatBindIcon),
+        v: common_vendor.o(($event) => navigateTo("/pages/Front/WeChatBind")),
+        w: common_vendor.p({
           column: 3,
           square: true,
           showBorder: false
         }),
-        o: common_vendor.p({
+        x: common_vendor.p({
           ["is-shadow"]: false,
           ["is-full"]: true,
           margin: "0",
           padding: "0",
           spacing: "0"
         }),
-        p: common_vendor.o(logout)
+        y: common_vendor.o(logout)
       });
     };
   }

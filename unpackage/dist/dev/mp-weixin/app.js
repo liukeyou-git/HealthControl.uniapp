@@ -19,6 +19,22 @@ if (!Math) {
   "./pages/Front/HealthIndicatorRecordList.js";
   "./pages/Front/DietRecordList.js";
   "./pages/Front/FoodList.js";
+  "./pages/Front/SportRecordList.js";
+  "./pages/Front/SportList.js";
+  "./pages/Front/HealthArticleList.js";
+  "./pages/Front/HealthArticleDetail.js";
+  "./pages/Front/MyHealthArticleList.js";
+  "./pages/Front/HealthArticleForm.js";
+  "./pages/Front/RecipeList.js";
+  "./pages/Front/RecipeDetail.js";
+  "./pages/Front/MyRecipeList.js";
+  "./pages/Front/RecipeForm.js";
+  "./pages/Front/LikeRecordList.js";
+  "./pages/Front/CollectRecordList.js";
+  "./pages/Front/HealthView.js";
+  "./pages/Front/AiAnalyse.js";
+  "./pages/Front/HealthNoticeList.js";
+  "./pages/Front/HealthNoticeForm.js";
 }
 const _sfc_main = {
   __name: "App",
